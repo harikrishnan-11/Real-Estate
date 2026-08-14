@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service — Stackly Property Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="./index.html" class="logo">
+      <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html" class="active">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav-cta">Login</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <nav aria-label="Mobile">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <span>Coimbatore studio, open by appointment</span>
+    <a href="./login.html" class="nav-cta">Login</a>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="hero-blueprint-grid" aria-hidden="true"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb reveal">
+      <a href="./index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Service</span>
+    </div>
+    <h1 class="reveal" style="--d:1">Four services, <em>one named agent.</em></h1>
+    <p class="reveal" style="--d:2">
+      Whether you're buying, selling, chasing a title check, or hunting a plot —
+      you work with a specialist, not a queue.
+    </p>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services">
+  <div class="section-head">
+    <p class="eyebrow reveal">What we do</p>
+    <h2 class="reveal">Pick a starting point</h2>
+    <p class="section-sub reveal">Every service below is run by the specialist named on it — not routed through a call centre.</p>
+  </div>
+
+  <div class="service-grid">
+    <article class="service-card reveal">
+      <span class="service-index">01 / Buying</span>
+      <h3>Buyer Advisory</h3>
+      <p>A shortlist built from what you actually need — commute, light, noise, room to grow — not a scraped feed of everything on the market.</p>
+      <ul class="service-list">
+        <li><i class="fa-solid fa-check"></i> 30-minute consult, no obligation</li>
+        <li><i class="fa-solid fa-check"></i> Three to five walked options</li>
+        <li><i class="fa-solid fa-check"></i> Back-to-back tours in one afternoon</li>
+        <li><i class="fa-solid fa-check"></i> No buyer-side commission</li>
+      </ul>
+      <a href="./contact.html" class="service-link">Start a search <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+
+    <article class="service-card reveal" style="--d:1">
+      <span class="service-index">02 / Selling</span>
+      <h3>Seller Advisory</h3>
+      <p>We photograph, price and list within a week, then bring only pre-qualified buyers to your door — no open-house crowds.</p>
+      <ul class="service-list">
+        <li><i class="fa-solid fa-check"></i> Market-backed pricing, not guesswork</li>
+        <li><i class="fa-solid fa-check"></i> Professional photography included</li>
+        <li><i class="fa-solid fa-check"></i> Pre-qualified buyers only</li>
+        <li><i class="fa-solid fa-check"></i> One flat, disclosed fee</li>
+      </ul>
+      <a href="./contact.html" class="service-link">List your home <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+
+    <article class="service-card reveal" style="--d:2">
+      <span class="service-index">03 / Legal</span>
+      <h3>Legal &amp; Registration</h3>
+      <p>Every title document is reviewed personally by our legal lead — so you're not chasing a separate lawyer mid-transaction.</p>
+      <ul class="service-list">
+        <li><i class="fa-solid fa-check"></i> Encumbrance certificate review</li>
+        <li><i class="fa-solid fa-check"></i> Title and boundary verification</li>
+        <li><i class="fa-solid fa-check"></i> Registration coordinated end-to-end</li>
+        <li><i class="fa-solid fa-check"></i> Plain-language explanations, no jargon</li>
+      </ul>
+      <a href="./contact.html" class="service-link">Ask a legal question <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+
+    <article class="service-card reveal" style="--d:3">
+      <span class="service-index">04 / Land</span>
+      <h3>Site &amp; Plot Specialist</h3>
+      <p>Boundary disputes, land classification, and plot sales handled by someone who grew up in a family land brokerage.</p>
+      <ul class="service-list">
+        <li><i class="fa-solid fa-check"></i> Boundary and survey verification</li>
+        <li><i class="fa-solid fa-check"></i> Land-use and zoning checks</li>
+        <li><i class="fa-solid fa-check"></i> Dispute history review</li>
+        <li><i class="fa-solid fa-check"></i> Plot-specific negotiation support</li>
+      </ul>
+      <a href="./contact.html" class="service-link">Talk about a plot <i class="fa-solid fa-arrow-right"></i></a>
+    </article>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="process">
+  <div class="section-head light">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal">Four steps, one address</h2>
+  </div>
+
+  <div class="process-path">
+    <div class="process-line" aria-hidden="true"></div>
+    <div class="process-step reveal">
+      <span class="process-num">01</span>
+      <h3>Consult</h3>
+      <p>A 30-minute call about how you actually live — commute, light, noise, room to grow.</p>
+    </div>
+    <div class="process-step reveal" style="--d:1">
+      <span class="process-num">02</span>
+      <h3>Curate</h3>
+      <p>We shortlist from our own walked inventory, not a scraped feed. Usually three to five options.</p>
+    </div>
+    <div class="process-step reveal" style="--d:2">
+      <span class="process-num">03</span>
+      <h3>Tour</h3>
+      <p>Back-to-back viewings in one afternoon, with honest notes on every flaw, not just the highlights.</p>
+    </div>
+    <div class="process-step reveal" style="--d:3">
+      <span class="process-num">04</span>
+      <h3>Close</h3>
+      <p>Paperwork, negotiation and registration handled end-to-end — you sign, we chase the rest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRICING ================= -->
+<section class="pricing">
+  <div class="section-head light">
+    <p class="eyebrow reveal">Fees, disclosed upfront</p>
+    <h2 class="reveal">One flat fee. No surprises at closing.</h2>
+  </div>
+
+  <div class="pricing-grid">
+    <div class="price-card reveal">
+      <span class="price-tier">Buyer</span>
+      <div class="price-amount">₹0</div>
+      <p class="price-note">Paid by the seller on every transaction</p>
+      <ul class="price-list">
+        <li><i class="fa-solid fa-check"></i> Full buyer advisory service</li>
+        <li><i class="fa-solid fa-check"></i> Curated shortlist &amp; tours</li>
+        <li><i class="fa-solid fa-check"></i> Negotiation support</li>
+        <li><i class="fa-solid fa-check"></i> Registration coordination</li>
+      </ul>
+      <a href="./contact.html" class="btn btn-outline btn-full" style="border-color:var(--line-dark);color:var(--stone);">Start a search</a>
+    </div>
+
+    <div class="price-card featured reveal" style="--d:1">
+      <span class="price-badge">Most chosen</span>
+      <span class="price-tier">Seller — Standard</span>
+      <div class="price-amount">1.5%</div>
+      <p class="price-note">Flat fee on final sale price</p>
+      <ul class="price-list">
+        <li><i class="fa-solid fa-check"></i> Pricing &amp; photography</li>
+        <li><i class="fa-solid fa-check"></i> Pre-qualified buyers only</li>
+        <li><i class="fa-solid fa-check"></i> Legal &amp; title review included</li>
+        <li><i class="fa-solid fa-check"></i> Registration handled end-to-end</li>
+      </ul>
+      <a href="./contact.html" class="btn btn-brass btn-full">List with us</a>
+    </div>
+
+    <div class="price-card reveal" style="--d:2">
+      <span class="price-tier">Seller — Land &amp; Plot</span>
+      <div class="price-amount">2%</div>
+      <p class="price-note">Flat fee, boundary &amp; dispute review included</p>
+      <ul class="price-list">
+        <li><i class="fa-solid fa-check"></i> Survey &amp; boundary verification</li>
+        <li><i class="fa-solid fa-check"></i> Land-use and zoning checks</li>
+        <li><i class="fa-solid fa-check"></i> Dispute history review</li>
+        <li><i class="fa-solid fa-check"></i> Specialist negotiation support</li>
+      </ul>
+      <a href="./contact.html" class="btn btn-outline btn-full" style="border-color:var(--line-dark);color:var(--stone);">Talk about a plot</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="section-head">
+    <p class="eyebrow reveal">Before you ask</p>
+    <h2 class="reveal">Questions we get on the first call</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">01</span> Do you charge buyers a commission?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>No. Our fee is paid by the seller. Buyers work with us at no direct cost, and we disclose that arrangement upfront.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">02</span> How is your inventory different from a portal?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Every address on our site has been personally walked by a founder. We turn down far more sellers than we list — no scraped or duplicate listings.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">03</span> Can you help with the legal and registration side?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Yes — our in-house legal lead reviews title documents on every transaction and coordinates registration, so you're not chasing a separate lawyer.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">04</span> What if I'm selling, not buying?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>We photograph, price and list within a week, and only bring pre-qualified buyers to your door — no open-house crowds.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">05</span> Do you work outside the six areas listed?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Occasionally, for existing clients. We'd rather say no than list somewhere we haven't personally verified.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-band" id="contact">
+  <div class="cta-inner">
+    <p class="eyebrow reveal">Start the search</p>
+    <h2 class="reveal">Which service fits you?</h2>
+    <p class="reveal">Tell us what a good week at home looks like. We'll match you with the right specialist.</p>
+    <a href="./contact.html" class="btn btn-brass reveal">Request a callback <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="./index.html" class="logo">
+        <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+      </a>
+      <p>Stackly Property Studio<br>Coimbatore, Tamil Nadu<br>Open by appointment, Mon–Sat</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>Quick Links</h4>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./service.html">Service</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="./index.html#spotlight">Address of the month</a>
+        <a href="./about.html#team">Our team</a>
+        <a href="./index.html#calculator">Mortgage calculator</a>
+        <a href="./blog.html">Journal</a>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <a href="tel:+910000000000">+91 00000 00000</a>
+        <a href="mailto:hello@stackly.com">hello@Stackly.com</a>
+        <a href="./contact.html">Common questions</a>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the loop</h4>
+        <p>New addresses, once a month. No spam, ever.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <span class="footer-social-label">Follow the studio</span>
+    <div class="social-row">
+      <a href="./contact.html" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+      <a href="./contact.html" aria-label="Facebook" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="./contact.html" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="./contact.html" aria-label="X (Twitter)" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="./contact.html" aria-label="YouTube" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+      <a href="./contact.html" aria-label="Pinterest" class="social-btn"><i class="fa-brands fa-pinterest-p"></i></a>
+      <a href="./contact.html" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Stackly. All addresses shown are illustrative.</span>
+    <button class="to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

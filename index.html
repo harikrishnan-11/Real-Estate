@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wren &amp; Holt — Homes drawn to your life</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="./index.html" class="logo">
+    <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+    </a>
+
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="./index.html" class="active">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav-cta">Login</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile drawer -->
+<div class="drawer" id="drawer">
+  <nav aria-label="Mobile">
+    <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <span>Coimbatore studio, open by appointment</span>
+      <a href="./login.html" class="nav-cta">Login</a>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-blueprint-grid" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <p class="eyebrow reveal">Independent real estate studio</p>
+    <h1 class="hero-title">
+      <span class="reveal">Homes drawn</span>
+      <span class="reveal" style="--d:1">to your life,</span>
+      <span class="reveal hero-title-italic" style="--d:2">not the other way round.</span>
+    </h1>
+    <p class="hero-sub reveal" style="--d:3">
+      We spend the first meeting listening, not showing. Then we bring you three
+      addresses worth your time — not thirty worth your patience.
+    </p>
+
+    <form class="search-panel reveal" style="--d:4" id="searchForm">
+      <div class="field">
+        <label for="loc">Location</label>
+        <input type="text" id="loc" placeholder="Neighbourhood or city">
+      </div>
+      <div class="field">
+        <label for="type">Type</label>
+        <select id="type">
+          <option>Any</option>
+          <option>Apartment</option>
+          <option>Villa</option>
+          <option>Plot</option>
+          <option>Penthouse</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="budget">Budget</label>
+        <select id="budget">
+          <option>Any</option>
+          <option>Under ₹50L</option>
+          <option>₹50L – ₹1Cr</option>
+          <option>₹1Cr – ₹2Cr</option>
+          <option>₹2Cr+</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-brass search-btn">
+        <i class="fa-solid fa-magnifying-glass"></i> Search
+      </button>
+    </form>
+
+    <div class="hero-stats reveal" style="--d:5">
+      <div class="stat">
+        <span class="stat-num" data-count="184">0</span>
+        <span class="stat-label">Addresses closed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="11">0</span>
+        <span class="stat-label">Avg. days to offer</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-count="97" data-suffix="%">0</span>
+        <span class="stat-label">Clients who refer us</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <img src="./src/img/Untitled design (2)_11zon.webp" alt="">
+  </div>
+</section>
+
+<!-- ================= AREAS ================= -->
+<section class="areas" id="areas">
+  <div class="section-head">
+    <p class="eyebrow reveal">Where we work</p>
+    <h2 class="reveal">Six neighbourhoods, walked on foot</h2>
+    <p class="section-sub reveal">We only list where we can name the best bakery on the corner. That's the whole coverage map.</p>
+  </div>
+
+  <div class="area-grid">
+    <a href="./404.html" class="area-card reveal">
+      <img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=600&auto=format&fit=crop" alt="Whitefield street view" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">12.9698° N, 77.7500° E</span>
+        <h3>Whitefield</h3>
+        <span class="area-count">14 addresses</span>
+      </div>
+    </a>
+    <a href="./404.html" class="area-card reveal" style="--d:1">
+      <img src="https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=600&auto=format&fit=crop" alt="RA Puram residential lane" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">13.0012° N, 80.2565° E</span>
+        <h3>RA Puram</h3>
+        <span class="area-count">9 addresses</span>
+      </div>
+    </a>
+    <a href="./404.html" class="area-card reveal" style="--d:2">
+      <img src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=600&auto=format&fit=crop" alt="Race Course tree-lined avenue" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">11.0025° N, 76.9640° E</span>
+        <h3>Race Course</h3>
+        <span class="area-count">6 addresses</span>
+      </div>
+    </a>
+    <a href="./404.html" class="area-card reveal" style="--d:3">
+      <img src="https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?q=80&w=600&auto=format&fit=crop" alt="Saravanampatti new development" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">11.0740° N, 77.0090° E</span>
+        <h3>Saravanampatti</h3>
+        <span class="area-count">11 addresses</span>
+      </div>
+    </a>
+    <a href="./404.html" class="area-card reveal" style="--d:4">
+      <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=600&auto=format&fit=crop" alt="Vadavalli quiet residential street" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">11.0060° N, 76.9160° E</span>
+        <h3>Vadavalli</h3>
+        <span class="area-count">7 addresses</span>
+      </div>
+    </a>
+    <a href="./404.html" class="area-card reveal" style="--d:5">
+      <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=600&auto=format&fit=crop" alt="Peelamedu commercial and residential mix" loading="lazy">
+      <div class="area-overlay">
+        <span class="area-coord">11.0296° N, 77.0266° E</span>
+        <h3>Peelamedu</h3>
+        <span class="area-count">5 addresses</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ================= LISTINGS ================= -->
+<section class="listings" id="listings">
+  <div class="section-head">
+    <p class="eyebrow reveal">Currently available</p>
+    <h2 class="reveal">A short list, on purpose</h2>
+    <p class="section-sub reveal">Every listing below has been walked, measured and vetted by someone on our team this month.</p>
+  </div>
+
+  <div class="listing-grid">
+
+    <article class="listing-card reveal">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=800&auto=format&fit=crop" alt="Sunlit modern villa with pool" loading="lazy">
+        <span class="listing-tag">New</span>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹2.4 Cr</div>
+        <h3>Sundara Villa, Whitefield</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-bed"></i> 4 bd</span>
+          <span><i class="fa-solid fa-bath"></i> 3 ba</span>
+          <span><i class="fa-solid fa-ruler-combined"></i> 3,120 sqft</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="listing-card reveal" style="--d:1">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=800&auto=format&fit=crop" alt="Minimal apartment interior" loading="lazy">
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹78 L</div>
+        <h3>Aravali Residency, 12th Cross</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-bed"></i> 2 bd</span>
+          <span><i class="fa-solid fa-bath"></i> 2 ba</span>
+          <span><i class="fa-solid fa-ruler-combined"></i> 1,240 sqft</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="listing-card reveal" style="--d:2">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop" alt="Elegant house exterior at dusk" loading="lazy">
+        <span class="listing-tag">Open house</span>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹1.65 Cr</div>
+        <h3>Larkspur House, RA Puram</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-bed"></i> 3 bd</span>
+          <span><i class="fa-solid fa-bath"></i> 3 ba</span>
+          <span><i class="fa-solid fa-ruler-combined"></i> 2,480 sqft</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="listing-card reveal" style="--d:3">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=800&auto=format&fit=crop" alt="Rooftop penthouse terrace" loading="lazy">
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹3.1 Cr</div>
+        <h3>The Weld Penthouse</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-bed"></i> 4 bd</span>
+          <span><i class="fa-solid fa-bath"></i> 4 ba</span>
+          <span><i class="fa-solid fa-ruler-combined"></i> 3,900 sqft</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="listing-card reveal" style="--d:4">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=800&auto=format&fit=crop" alt="Compact modern studio" loading="lazy">
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹42 L</div>
+        <h3>Birch Studio, Race Course</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-bed"></i> 1 bd</span>
+          <span><i class="fa-solid fa-bath"></i> 1 ba</span>
+          <span><i class="fa-solid fa-ruler-combined"></i> 640 sqft</span>
+        </p>
+      </div>
+    </article>
+
+    <article class="listing-card reveal" style="--d:5">
+      <div class="listing-media">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" alt="Garden plot with boundary markers" loading="lazy">
+        <span class="listing-tag">Land</span>
+        <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+      </div>
+      <div class="listing-body">
+        <div class="listing-price">₹95 L</div>
+        <h3>Corner Plot, Saravanampatti</h3>
+        <p class="listing-specs">
+          <span><i class="fa-solid fa-vector-square"></i> 2,400 sqft</span>
+          <span><i class="fa-solid fa-compass"></i> East facing</span>
+        </p>
+      </div>
+    </article>
+
+  </div>
+
+  <div class="listings-foot reveal">
+    <a href="./contact.html" class="btn btn-outline">View all 42 addresses <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ================= SIGNATURE LISTING ================= -->
+<section class="spotlight" id="spotlight">
+  <div class="spotlight-media reveal">
+    <div class="spotlight-main">
+      <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1000&auto=format&fit=crop" alt="The Meridian, main facade at golden hour">
+      <div class="corner corner-tl"></div><div class="corner corner-tr"></div>
+      <div class="corner corner-bl"></div><div class="corner corner-br"></div>
+    </div>
+    <div class="spotlight-thumbs">
+      <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=400&auto=format&fit=crop" alt="Living room with skylight" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1600607687644-aac4c3eac7f4?q=80&w=400&auto=format&fit=crop" alt="Kitchen with stone island" loading="lazy">
+    </div>
+  </div>
+
+  <div class="spotlight-copy">
+    <p class="eyebrow reveal">Address of the month</p>
+    <h2 class="reveal">The Meridian, Avinashi Road</h2>
+    <div class="spotlight-price reveal" style="--d:1">₹4.2 Cr</div>
+    <p class="reveal" style="--d:2">
+      A four-bedroom courtyard house built around a single skylight that tracks the
+      sun through every room by afternoon. Rebuilt in 2022, original teak retained
+      on the staircase and window frames.
+    </p>
+    <ul class="spotlight-specs reveal" style="--d:3">
+      <li><i class="fa-solid fa-bed"></i> 4 bedrooms</li>
+      <li><i class="fa-solid fa-bath"></i> 4.5 baths</li>
+      <li><i class="fa-solid fa-ruler-combined"></i> 4,650 sqft</li>
+      <li><i class="fa-solid fa-car"></i> 3 covered</li>
+      <li><i class="fa-solid fa-tree"></i> Private courtyard</li>
+      <li><i class="fa-solid fa-calendar"></i> Rebuilt 2022</li>
+    </ul>
+    <div class="spotlight-actions reveal" style="--d:4">
+      <a href="./contact.html" class="btn btn-brass">Schedule a private tour</a>
+      <a href="./contact.html" class="btn btn-outline">Download spec sheet</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process" id="process">
+  <div class="section-head light">
+    <p class="eyebrow reveal">How it works</p>
+    <h2 class="reveal">Four steps, one address</h2>
+  </div>
+
+  <div class="process-path">
+    <div class="process-line" aria-hidden="true"></div>
+
+    <div class="process-step reveal">
+      <span class="process-num">01</span>
+      <h3>Consult</h3>
+      <p>A 30-minute call about how you actually live — commute, light, noise, room to grow.</p>
+    </div>
+    <div class="process-step reveal" style="--d:1">
+      <span class="process-num">02</span>
+      <h3>Curate</h3>
+      <p>We shortlist from our own walked inventory, not a scraped feed. Usually three to five options.</p>
+    </div>
+    <div class="process-step reveal" style="--d:2">
+      <span class="process-num">03</span>
+      <h3>Tour</h3>
+      <p>Back-to-back viewings in one afternoon, with honest notes on every flaw, not just the highlights.</p>
+    </div>
+    <div class="process-step reveal" style="--d:3">
+      <span class="process-num">04</span>
+      <h3>Close</h3>
+      <p>Paperwork, negotiation and registration handled end-to-end — you sign, we chase the rest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MARKET INSIGHTS ================= -->
+<section class="market" id="market">
+  <div class="section-head light">
+    <p class="eyebrow reveal">Market insights</p>
+    <h2 class="reveal">What prices actually did this year</h2>
+    <p class="section-sub reveal" style="color:var(--text-soft)">Year-on-year price growth by neighbourhood, drawn from our own closed transactions.</p>
+  </div>
+
+  <div class="market-chart reveal">
+    <div class="chart-row">
+      <span class="chart-label">Whitefield</span>
+      <div class="chart-track"><div class="chart-bar" data-value="14"></div></div>
+      <span class="chart-figure">14%</span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-label">RA Puram</span>
+      <div class="chart-track"><div class="chart-bar" data-value="11"></div></div>
+      <span class="chart-figure">11%</span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-label">Saravanampatti</span>
+      <div class="chart-track"><div class="chart-bar" data-value="18"></div></div>
+      <span class="chart-figure">18%</span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-label">Race Course</span>
+      <div class="chart-track"><div class="chart-bar" data-value="7"></div></div>
+      <span class="chart-figure">7%</span>
+    </div>
+    <div class="chart-row">
+      <span class="chart-label">Vadavalli</span>
+      <div class="chart-track"><div class="chart-bar" data-value="9"></div></div>
+      <span class="chart-figure">9%</span>
+    </div>
+  </div>
+
+  <div class="market-metrics">
+    <div class="metric-card reveal">
+      <span class="metric-num" data-count="6840">0</span>
+      <span class="metric-label">Median ₹ / sqft</span>
+    </div>
+    <div class="metric-card reveal" style="--d:1">
+      <span class="metric-num" data-count="12" data-suffix="%">0</span>
+      <span class="metric-label">Avg. YoY growth</span>
+    </div>
+    <div class="metric-card reveal" style="--d:2">
+      <span class="metric-num" data-count="34">0</span>
+      <span class="metric-label">Avg. days to close</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="why">
+  <div class="why-media reveal">
+    <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=900&auto=format&fit=crop" alt="Agent reviewing floor plans with clients">
+  </div>
+  <div class="why-copy">
+    <p class="eyebrow reveal">Why Stackly</p>
+    <h2 class="reveal">We turn down more listings than we take.</h2>
+    <p class="reveal">
+      Most agencies grow their catalogue. We've kept ours small on purpose — every
+      address on our books has been personally inspected by a founder, not an intern
+      with a checklist. That discipline is the whole product.
+    </p>
+    <ul class="why-list">
+      <li class="reveal"><i class="fa-solid fa-check"></i> No commission games — one flat fee, disclosed upfront</li>
+      <li class="reveal" style="--d:1"><i class="fa-solid fa-check"></i> Independent legal review on every transaction</li>
+      <li class="reveal" style="--d:2"><i class="fa-solid fa-check"></i> A named agent who answers their own phone</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section class="team" id="team">
+  <div class="section-head">
+    <p class="eyebrow reveal">Meet the studio</p>
+    <h2 class="reveal">Four people, no call centre</h2>
+    <p class="section-sub reveal">Every client works with one named agent from first call to registration.</p>
+  </div>
+
+  <div class="team-grid">
+    <article class="team-card reveal">
+      <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=500&auto=format&fit=crop" alt="Portrait of Aditi Rao">
+      <h3>Aditi Rao</h3>
+      <span class="team-role">Founder, Buyer Advisory</span>
+      <p>Twelve years walking Coimbatore's east side before it was fashionable to.</p>
+      <div class="team-contact">
+        <a href="./404.html" aria-label="Call Aditi"><i class="fa-solid fa-phone"></i></a>
+        <a href="./404.html" aria-label="Email Aditi"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </article>
+    <article class="team-card reveal" style="--d:1">
+      <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=500&auto=format&fit=crop" alt="Portrait of Nikhil Varma">
+      <h3>Nikhil Varma</h3>
+      <span class="team-role">Founder, Seller Advisory</span>
+      <p>Ex-architect. Reads a floor plan the way most people read a headline.</p>
+      <div class="team-contact">
+        <a href="./404.html" aria-label="Call Nikhil"><i class="fa-solid fa-phone"></i></a>
+        <a href="./404.html" aria-label="Email Nikhil"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </article>
+    <article class="team-card reveal" style="--d:2">
+      <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=500&auto=format&fit=crop" alt="Portrait of Priya Menon">
+      <h3>Priya Menon</h3>
+      <span class="team-role">Legal &amp; Registration</span>
+      <p>Handles every title check personally — nothing reaches a client unread.</p>
+      <div class="team-contact">
+        <a href="./404.html" aria-label="Call Priya"><i class="fa-solid fa-phone"></i></a>
+        <a href="./404.html" aria-label="Email Priya"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </article>
+    <article class="team-card reveal" style="--d:3">
+      <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=500&auto=format&fit=crop" alt="Portrait of Farhan Sheikh">
+      <h3>Farhan Sheikh</h3>
+      <span class="team-role">Site &amp; Plot Specialist</span>
+      <p>Grew up on his family's land brokerage. Knows every boundary dispute story.</p>
+      <div class="team-contact">
+        <a href="./404.html" aria-label="Call Farhan"><i class="fa-solid fa-phone"></i></a>
+        <a href="./404.html" aria-label="Email Farhan"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= MORTGAGE CALCULATOR ================= -->
+<section class="calculator" id="calculator">
+  <div class="calc-copy">
+    <p class="eyebrow reveal">Plan the numbers</p>
+    <h2 class="reveal">What would the monthly look like?</h2>
+    <p class="reveal">Rough figures only — your bank will want a proper application. But this is a fair starting sketch.</p>
+  </div>
+
+  <div class="calc-panel reveal">
+    <div class="calc-inputs">
+      <div class="calc-field">
+        <label for="calcPrice">Property price (₹)</label>
+        <input type="range" id="calcPrice" min="1000000" max="50000000" step="100000" value="8000000">
+        <span class="calc-value" id="calcPriceVal">₹80,00,000</span>
+      </div>
+      <div class="calc-field">
+        <label for="calcDown">Down payment (%)</label>
+        <input type="range" id="calcDown" min="10" max="60" step="1" value="20">
+        <span class="calc-value" id="calcDownVal">20%</span>
+      </div>
+      <div class="calc-field">
+        <label for="calcRate">Interest rate (% p.a.)</label>
+        <input type="range" id="calcRate" min="6" max="14" step="0.1" value="8.5">
+        <span class="calc-value" id="calcRateVal">8.5%</span>
+      </div>
+      <div class="calc-field">
+        <label for="calcYears">Tenure (years)</label>
+        <input type="range" id="calcYears" min="5" max="30" step="1" value="20">
+        <span class="calc-value" id="calcYearsVal">20 yrs</span>
+      </div>
+    </div>
+
+    <div class="calc-results">
+      <div class="calc-result-main">
+        <span class="calc-result-label">Estimated monthly EMI</span>
+        <span class="calc-result-num" id="calcEmi">₹0</span>
+      </div>
+      <div class="calc-split">
+        <div class="calc-split-bar">
+          <div class="calc-split-principal" id="calcSplitPrincipal"></div>
+        </div>
+        <div class="calc-split-legend">
+          <span><i class="dot dot-brass"></i> Principal <strong id="calcPrincipal">₹0</strong></span>
+          <span><i class="dot dot-sage"></i> Interest <strong id="calcInterest">₹0</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="testimonials">
+  <div class="section-head">
+    <p class="eyebrow reveal">Client notes</p>
+    <h2 class="reveal">Said after the keys changed hands</h2>
+  </div>
+
+  <div class="testi-track" id="testiTrack">
+    <div class="testi-card active">
+      <p>"They told us to skip a listing we loved because the drainage was bad. That honesty is worth more than any brochure."</p>
+      <div class="testi-who"><strong>Meera &amp; Arjun S.</strong><span>Bought in Whitefield</span></div>
+    </div>
+    <div class="testi-card">
+      <p>"Eleven days from first call to signed offer. I didn't think that was possible in this market."</p>
+      <div class="testi-who"><strong>Kabir Rao</strong><span>Bought in RA Puram</span></div>
+    </div>
+    <div class="testi-card">
+      <p>"No pressure, no upsell — just three good options and a straight answer every time we asked one."</p>
+      <div class="testi-who"><strong>Fatima Noor</strong><span>Sold in Race Course</span></div>
+    </div>
+  </div>
+  <div class="testi-dots" id="testiDots"></div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="section-head">
+    <p class="eyebrow reveal">Before you ask</p>
+    <h2 class="reveal">Questions we get on the first call</h2>
+  </div>
+
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">01</span> Do you charge buyers a commission?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>No. Our fee is paid by the seller. Buyers work with us at no direct cost, and we disclose that arrangement upfront.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">02</span> How is your inventory different from a portal?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Every address on our site has been personally walked by a founder. We turn down far more sellers than we list — no scraped or duplicate listings.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">03</span> Can you help with the legal and registration side?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Yes — our in-house legal lead reviews title documents on every transaction and coordinates registration, so you're not chasing a separate lawyer.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">04</span> What if I'm selling, not buying?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>We photograph, price and list within a week, and only bring pre-qualified buyers to your door — no open-house crowds.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">05</span> Do you work outside the six areas listed?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Occasionally, for existing clients. We'd rather say no than list somewhere we haven't personally verified.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">06</span> How fast can I actually move in?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Our average is 11 days from first call to signed offer, and 34 days to full registration — figures pulled from this year's closed deals.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNAL ================= -->
+<section class="journal" id="journal">
+  <div class="section-head">
+    <p class="eyebrow reveal">The journal</p>
+    <h2 class="reveal">Notes from the field</h2>
+  </div>
+
+  <div class="journal-grid">
+    <article class="journal-card reveal">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Documents and keys on a table" loading="lazy">
+        <span class="journal-tag">Guide</span>
+      </div>
+      <span class="journal-meta">6 min read</span>
+      <h3>What actually shows up in a title search</h3>
+      <p>A plain-language walk through encumbrance certificates, and the three red flags worth pausing a deal over.</p>
+    </article>
+    <article class="journal-card reveal" style="--d:1">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=700&auto=format&fit=crop" alt="Interior of a renovated living room" loading="lazy">
+        <span class="journal-tag">Market</span>
+      </div>
+      <span class="journal-meta">4 min read</span>
+      <h3>Why Saravanampatti outgrew its own price forecast</h3>
+      <p>Infrastructure timing, not hype, explains most of this year's 18% jump — here's the data behind it.</p>
+    </article>
+    <article class="journal-card reveal" style="--d:2">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=700&auto=format&fit=crop" alt="Renovated kitchen with natural light" loading="lazy">
+        <span class="journal-tag">Advice</span>
+      </div>
+      <span class="journal-meta">5 min read</span>
+      <h3>The renovation questions to ask before you offer</h3>
+      <p>Five questions that tell you whether a "recently renovated" listing means structural work or a fresh coat of paint.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-band" id="contact">
+  <div class="cta-inner">
+    <p class="eyebrow reveal">Start the search</p>
+    <h2 class="reveal">Ready to find your address?</h2>
+    <p class="reveal">Tell us what a good week at home looks like. We'll do the rest.</p>
+    <form class="cta-form reveal" id="ctaForm">
+      <input type="text" placeholder="Your name" required>
+      <input type="tel" placeholder="Phone number" required>
+      <button type="submit" class="btn btn-brass">Request a callback</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="./index.html" class="logo">
+    <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+    </a>
+      <p>Stackly Property Studio<br>Coimbatore, Tamil Nadu<br>Open by appointment, Mon–Sat</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>Quick Links</h4>
+          <a href="./index.html" class="active">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html">Contact</a>
+
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="./404.html">Address of the month</a>
+        <a href="./404.html">Our team</a>
+        <a href="./404.html">Mortgage calculator</a>
+        <a href="./404.html">Journal</a>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <a href="./404.html">+91 00000 00000</a>
+        <a href="./404.html">hello@Stackly.com</a>
+        <a href="./404.html">Common questions</a>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the loop</h4>
+        <p>New addresses, once a month. No spam, ever.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <span class="footer-social-label">Follow the studio</span>
+    <div class="social-row">
+      <a href="./404.html" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+      <a href="./404.html" aria-label="Facebook" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="./404.html" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="./404.html" aria-label="X (Twitter)" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="./404.html" aria-label="YouTube" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+      <a href="./404.html" aria-label="Pinterest" class="social-btn"><i class="fa-brands fa-pinterest-p"></i></a>
+      <a href="./404.html" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Stackly. All addresses shown are illustrative.</span>
+    <button class="to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

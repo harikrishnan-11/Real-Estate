@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — Stackly Property Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="./index.html" class="logo">
+      <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html" class="active">Blog</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./login.html" class="nav-cta">Login</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <nav aria-label="Mobile">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <span>Coimbatore studio, open by appointment</span>
+    <a href="./login.html" class="nav-cta">Login</a>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="hero-blueprint-grid" aria-hidden="true"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb reveal">
+      <a href="./index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Blog</span>
+    </div>
+    <h1 class="reveal" style="--d:1">Notes from <em>the field.</em></h1>
+    <p class="reveal" style="--d:2">
+      Plain-language guides, market data, and the questions worth asking before you
+      offer — written by the people who walked the listing.
+    </p>
+  </div>
+</section>
+
+<!-- ================= FEATURED POST ================= -->
+<section class="blog-feature">
+  <div class="blog-feature-media reveal">
+    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1000&auto=format&fit=crop" alt="Documents and keys on a table">
+  </div>
+  <div class="blog-feature-copy">
+    <span class="journal-tag reveal">Featured</span>
+    <h2 class="reveal" style="--d:1">What actually shows up in a title search</h2>
+    <div class="blog-feature-meta reveal" style="--d:2">
+      <span><i class="fa-solid fa-user"></i> Priya Menon</span>
+      <span><i class="fa-solid fa-clock"></i> 6 min read</span>
+      <span><i class="fa-solid fa-calendar"></i> Aug 2026</span>
+    </div>
+    <p class="reveal" style="--d:3">
+      A plain-language walk through encumbrance certificates, and the three red
+      flags worth pausing a deal over — written by the person who reviews every
+      title on our books personally.
+    </p>
+    <a href="./contact.html" class="btn btn-outline reveal" style="--d:4">Read the guide <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- ================= FILTERS ================= -->
+<div class="blog-filters reveal">
+  <button class="filter-btn active" data-filter="all">All posts</button>
+  <button class="filter-btn" data-filter="guide">Guides</button>
+  <button class="filter-btn" data-filter="market">Market</button>
+  <button class="filter-btn" data-filter="advice">Advice</button>
+</div>
+
+<!-- ================= JOURNAL GRID ================= -->
+<section class="journal" id="journal">
+  <div class="journal-grid">
+
+    <article class="journal-card reveal" data-category="guide">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=700&auto=format&fit=crop" alt="Documents and keys on a table" loading="lazy">
+        <span class="journal-tag">Guide</span>
+      </div>
+      <span class="journal-meta">6 min read</span>
+      <h3>What actually shows up in a title search</h3>
+      <p>A plain-language walk through encumbrance certificates, and the three red flags worth pausing a deal over.</p>
+    </article>
+
+    <article class="journal-card reveal" style="--d:1" data-category="market">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=700&auto=format&fit=crop" alt="Interior of a renovated living room" loading="lazy">
+        <span class="journal-tag">Market</span>
+      </div>
+      <span class="journal-meta">4 min read</span>
+      <h3>Why Saravanampatti outgrew its own price forecast</h3>
+      <p>Infrastructure timing, not hype, explains most of this year's 18% jump — here's the data behind it.</p>
+    </article>
+
+    <article class="journal-card reveal" style="--d:2" data-category="advice">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=700&auto=format&fit=crop" alt="Renovated kitchen with natural light" loading="lazy">
+        <span class="journal-tag">Advice</span>
+      </div>
+      <span class="journal-meta">5 min read</span>
+      <h3>The renovation questions to ask before you offer</h3>
+      <p>Five questions that tell you whether a "recently renovated" listing means structural work or a fresh coat of paint.</p>
+    </article>
+
+    <article class="journal-card reveal" data-category="guide">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=700&auto=format&fit=crop" alt="Calculator and paperwork" loading="lazy">
+        <span class="journal-tag">Guide</span>
+      </div>
+      <span class="journal-meta">7 min read</span>
+      <h3>Reading an EMI schedule without a finance degree</h3>
+      <p>What principal, interest and tenure actually do to your monthly number, with worked examples at three price points.</p>
+    </article>
+
+    <article class="journal-card reveal" style="--d:1" data-category="market">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1524230572899-a752b3835840?q=80&w=700&auto=format&fit=crop" alt="Aerial view of a residential neighbourhood" loading="lazy">
+        <span class="journal-tag">Market</span>
+      </div>
+      <span class="journal-meta">5 min read</span>
+      <h3>Whitefield's 14% year is quieter than it looks</h3>
+      <p>Why steady infrastructure spend, not speculation, is driving this year's growth — and what it means for next year.</p>
+    </article>
+
+    <article class="journal-card reveal" style="--d:2" data-category="advice">
+      <div class="journal-media">
+        <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?q=80&w=700&auto=format&fit=crop" alt="Family reviewing floor plans together" loading="lazy">
+        <span class="journal-tag">Advice</span>
+      </div>
+      <span class="journal-meta">4 min read</span>
+      <h3>What to bring to your first consult</h3>
+      <p>The five questions we always ask, and the documents that save everyone a second phone call.</p>
+    </article>
+
+  </div>
+</section>
+
+<!-- ================= PAGINATION ================= -->
+<div class="blog-pagination reveal">
+  <button class="page-btn active" data-page="1">1</button>
+  <button class="page-btn" data-page="2">2</button>
+  <button class="page-btn" data-page="3">3</button>
+  <button class="page-btn next"><span>Next</span> <i class="fa-solid fa-arrow-right"></i></button>
+</div>
+
+<!-- ================= NEWSLETTER CTA ================= -->
+<section class="cta-band">
+  <div class="cta-inner">
+    <p class="eyebrow reveal">Stay in the loop</p>
+    <h2 class="reveal">New notes, once a month</h2>
+    <p class="reveal">Market data, guides and the honest version of "recently renovated" — straight to your inbox.</p>
+    <form class="cta-form reveal" id="ctaForm">
+      <input type="email" placeholder="Your email" required>
+      <button type="submit" class="btn btn-brass">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="./index.html" class="logo">
+        <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+      </a>
+      <p>Stackly Property Studio<br>Coimbatore, Tamil Nadu<br>Open by appointment, Mon–Sat</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>Quick Links</h4>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./service.html">Service</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="./index.html#spotlight">Address of the month</a>
+        <a href="./about.html#team">Our team</a>
+        <a href="./index.html#calculator">Mortgage calculator</a>
+        <a href="./blog.html">Journal</a>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <a href="tel:+910000000000">+91 00000 00000</a>
+        <a href="mailto:hello@stackly.com">hello@Stackly.com</a>
+        <a href="./contact.html">Common questions</a>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the loop</h4>
+        <p>New addresses, once a month. No spam, ever.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <span class="footer-social-label">Follow the studio</span>
+    <div class="social-row">
+      <a href="./contact.html" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+      <a href="./contact.html" aria-label="Facebook" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="./contact.html" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="./contact.html" aria-label="X (Twitter)" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="./contact.html" aria-label="YouTube" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+      <a href="./contact.html" aria-label="Pinterest" class="social-btn"><i class="fa-brands fa-pinterest-p"></i></a>
+      <a href="./contact.html" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Stackly. All addresses shown are illustrative.</span>
+    <button class="to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

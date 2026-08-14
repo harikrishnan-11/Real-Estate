@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Stackly Property Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="auth">
+  <div class="auth-visual">
+    <div class="auth-visual-top">
+      <a href="./index.html" class="logo">
+        <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+      </a>
+    </div>
+    <div class="auth-quote reveal">
+      <p>"They told us to skip a listing we loved because the drainage was bad. That honesty is worth more than any brochure."</p>
+      <div class="testi-who">
+        <strong>Meera &amp; Arjun S.</strong>
+        <span>Bought in Whitefield</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-panel">
+    <div class="auth-card">
+      <a href="./index.html" class="auth-back reveal"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
+      <p class="eyebrow reveal">Client login</p>
+      <h1 class="reveal" style="--d:1">Welcome back</h1>
+      <p class="auth-sub reveal" style="--d:2">Log in to track your shortlist, tours and offers.</p>
+
+      <div class="auth-social reveal" style="--d:3">
+        <button type="button" class="social-auth-btn"><i class="fa-brands fa-google"></i> Continue with Google</button>
+        <button type="button" class="social-auth-btn"><i class="fa-brands fa-apple"></i> Continue with Apple</button>
+      </div>
+      <div class="auth-divider reveal" style="--d:4">or continue with email</div>
+
+      <div class="auth-error" id="loginError">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span>Enter a valid email and a password of at least 6 characters.</span>
+      </div>
+
+      <form id="loginForm" class="reveal" style="--d:5">
+        <div class="form-group">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="you@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="field-icon-wrap">
+            <input type="password" id="loginPassword" placeholder="Your password" required>
+            <button type="button" class="field-icon-btn" data-toggle="loginPassword" aria-label="Show password">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="auth-row">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="rememberMe">
+            Remember me
+          </label>
+          <a href="./contact.html" class="auth-link">Forgot password?</a>
+        </div>
+        <button type="submit" class="btn btn-brass btn-full">
+          <span class="btn-label">Log in</span>
+        </button>
+      </form>
+
+      <p class="auth-foot">New to Stackly? <a href="./signup.html" class="auth-link">Create an account</a></p>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Stackly Property Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header" id="siteHeader">
+  <div class="header-inner">
+    <a href="./index.html" class="logo">
+      <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="./index.html">Home</a>
+      <a href="./about.html">About</a>
+      <a href="./service.html">Service</a>
+      <a href="./blog.html">Blog</a>
+      <a href="./contact.html" class="active">Contact</a>
+      <a href="./login.html" class="nav-cta">Login</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <nav aria-label="Mobile">
+    <a href="./index.html">Home</a>
+    <a href="./about.html">About</a>
+    <a href="./service.html">Service</a>
+    <a href="./blog.html">Blog</a>
+    <a href="./contact.html">Contact</a>
+  </nav>
+  <div class="drawer-foot">
+    <span>Coimbatore studio, open by appointment</span>
+    <a href="./login.html" class="nav-cta">Login</a>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero">
+  <div class="hero-blueprint-grid" aria-hidden="true"></div>
+  <div class="page-hero-inner">
+    <div class="breadcrumb reveal">
+      <a href="./index.html">Home</a> <i class="fa-solid fa-chevron-right"></i> <span>Contact</span>
+    </div>
+    <h1 class="reveal" style="--d:1">Let's talk about <em>your address.</em></h1>
+    <p class="reveal" style="--d:2">
+      One form, one named agent, one honest answer — usually within a business day.
+    </p>
+  </div>
+</section>
+
+<!-- ================= CONTACT WRAP ================= -->
+<section class="contact-wrap">
+  <div class="contact-info">
+    <p class="eyebrow reveal">Get in touch</p>
+    <h2 class="reveal" style="--d:1">Reach the studio directly</h2>
+    <p class="reveal" style="--d:2">No call centre, no ticket queue — every message reaches a named person on the team.</p>
+
+    <div class="contact-cards">
+      <a class="contact-card reveal" href="tel:+910000000000">
+        <i class="fa-solid fa-phone"></i>
+        <div>
+          <strong>Call the studio</strong>
+          <span>+91 00000 00000 — Mon–Sat, 10am–7pm</span>
+        </div>
+      </a>
+      <a class="contact-card reveal" style="--d:1" href="mailto:hello@stackly.com">
+        <i class="fa-solid fa-envelope"></i>
+        <div>
+          <strong>Email us</strong>
+          <span>hello@stackly.com — replies within a business day</span>
+        </div>
+      </a>
+      <a class="contact-card reveal" style="--d:2" href="https://wa.me/910000000000" target="_blank" rel="noopener">
+        <i class="fa-brands fa-whatsapp"></i>
+        <div>
+          <strong>WhatsApp</strong>
+          <span>Fastest for quick questions or a same-day tour</span>
+        </div>
+      </a>
+      <div class="contact-card reveal" style="--d:3">
+        <i class="fa-solid fa-location-dot"></i>
+        <div>
+          <strong>Visit the studio</strong>
+          <span>Race Course, Coimbatore, Tamil Nadu — by appointment</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-map reveal">
+      <iframe
+        src="https://www.openstreetmap.org/export/embed.html?bbox=76.9440%2C10.9925%2C77.0140%2C11.0525&amp;layer=mapnik&amp;marker=11.0025%2C76.9640"
+        title="Map showing the Stackly studio location in Coimbatore" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <div class="contact-form-panel reveal">
+    <h3>Request a callback</h3>
+    <p>Tell us a little about what you're looking for — a founder or specialist will call you back.</p>
+
+    <div class="form-success" id="contactSuccess">
+      <i class="fa-solid fa-circle-check"></i>
+      <span>Thanks — we've got your message and will call within a business day.</span>
+    </div>
+
+    <form id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cName">Full name</label>
+          <input type="text" id="cName" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="cPhone">Phone number</label>
+          <input type="tel" id="cPhone" placeholder="+91 00000 00000" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="cEmail">Email</label>
+          <input type="email" id="cEmail" placeholder="you@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="cInterest">I'm looking to</label>
+          <select id="cInterest">
+            <option>Buy a home</option>
+            <option>Sell a home</option>
+            <option>Review a title / legal question</option>
+            <option>Buy or sell a plot</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="cMessage">Message</label>
+        <textarea id="cMessage" placeholder="A little about the address, budget, or timeline…"></textarea>
+      </div>
+      <button type="submit" class="btn btn-brass btn-full">
+        <span class="btn-label">Send message</span>
+      </button>
+      <div class="form-note">
+        <i class="fa-solid fa-lock"></i> We never share your details. Demo form — no data is actually sent.
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="section-head">
+    <p class="eyebrow reveal">Before you call</p>
+    <h2 class="reveal">Quick answers</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">01</span> How fast will someone respond?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Within one business day, usually sooner. WhatsApp is fastest if you need a same-day answer.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">02</span> Can I visit the studio without an appointment?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>We're by appointment only, Monday to Saturday, so a founder or specialist is always free to meet you properly.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" aria-expanded="false">
+        <span><span class="faq-index">03</span> Do you handle enquiries outside Coimbatore?</span>
+        <i class="fa-solid fa-plus"></i>
+      </button>
+      <div class="faq-a"><p>Occasionally, for existing clients relocating. Reach out and we'll tell you honestly whether we can help.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="./index.html" class="logo">
+        <img src="./src/logo/Untitled design (1)_11zon.webp" alt="">
+      </a>
+      <p>Stackly Property Studio<br>Coimbatore, Tamil Nadu<br>Open by appointment, Mon–Sat</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <h4>Quick Links</h4>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./service.html">Service</a>
+        <a href="./blog.html">Blog</a>
+        <a href="./contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="./index.html#spotlight">Address of the month</a>
+        <a href="./about.html#team">Our team</a>
+        <a href="./index.html#calculator">Mortgage calculator</a>
+        <a href="./blog.html">Journal</a>
+      </div>
+      <div>
+        <h4>Talk to us</h4>
+        <a href="tel:+910000000000">+91 00000 00000</a>
+        <a href="mailto:hello@stackly.com">hello@Stackly.com</a>
+        <a href="./contact.html">Common questions</a>
+      </div>
+      <div class="footer-newsletter">
+        <h4>Stay in the loop</h4>
+        <p>New addresses, once a month. No spam, ever.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Your email" required aria-label="Email address">
+          <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <span class="footer-social-label">Follow the studio</span>
+    <div class="social-row">
+      <a href="#" aria-label="Instagram" class="social-btn"><i class="fa-brands fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook" class="social-btn"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#" aria-label="LinkedIn" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="#" aria-label="X (Twitter)" class="social-btn"><i class="fa-brands fa-x-twitter"></i></a>
+      <a href="#" aria-label="YouTube" class="social-btn"><i class="fa-brands fa-youtube"></i></a>
+      <a href="#" aria-label="Pinterest" class="social-btn"><i class="fa-brands fa-pinterest-p"></i></a>
+      <a href="https://wa.me/910000000000" aria-label="WhatsApp" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Stackly. All addresses shown are illustrative.</span>
+    <button class="to-top" id="toTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
