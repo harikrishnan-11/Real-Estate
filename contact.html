@@ -249,5 +249,88 @@
 </footer>
 
 <script src="script.js"></script>
+  <script>
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const name = document.getElementById("cName");
+  const phone = document.getElementById("cPhone");
+  const email = document.getElementById("cEmail");
+  const interest = document.getElementById("cInterest");
+  const message = document.getElementById("cMessage");
+
+  let isValid = true;
+
+  // Remove previous errors
+  document.querySelectorAll(".error-message").forEach(el => el.remove());
+  document.querySelectorAll(".input-error").forEach(el => {
+    el.classList.remove("input-error");
+  });
+
+  function showError(input, text) {
+    input.classList.add("input-error");
+
+    const error = document.createElement("small");
+    error.className = "error-message";
+    error.textContent = text;
+
+    input.parentElement.appendChild(error);
+    isValid = false;
+  }
+
+  // Full Name
+  const nameValue = name.value.trim();
+
+  if (nameValue === "") {
+    showError(name, "Please enter your full name.");
+  } else if (nameValue.length < 3) {
+    showError(name, "Name must be at least 3 characters.");
+  } else if (!/^[A-Za-z\s.'-]+$/.test(nameValue)) {
+    showError(name, "Please enter a valid name.");
+  }
+
+  // Phone
+  const phoneValue = phone.value.trim();
+  const cleanPhone = phoneValue.replace(/[\s()-]/g, "");
+
+  if (phoneValue === "") {
+    showError(phone, "Please enter your phone number.");
+  } else if (!/^\+?[0-9]{10,13}$/.test(cleanPhone)) {
+    showError(phone, "Please enter a valid phone number.");
+  }
+
+  // Email
+  const emailValue = email.value.trim();
+
+  if (emailValue === "") {
+    showError(email, "Please enter your email address.");
+  } else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|in)$/i.test(emailValue)) {
+    showError(email, "Please enter a valid .com or .in email address.");
+  }
+
+  // Interest
+  if (interest.value.trim() === "") {
+    showError(interest, "Please select an option.");
+  }
+
+  // Message
+  const messageValue = message.value.trim();
+
+  if (messageValue === "") {
+    showError(message, "Please enter your message.");
+  } else if (messageValue.length < 10) {
+    showError(message, "Message must be at least 10 characters.");
+  } else if (messageValue.length > 500) {
+    showError(message, "Message cannot exceed 500 characters.");
+  }
+
+  // Success
+  if (isValid) {
+
+    // Reset form
+    this.reset();
+  }
+});
+</script>
 </body>
 </html>
