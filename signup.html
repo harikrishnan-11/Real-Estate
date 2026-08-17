@@ -9,6 +9,69 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
+<style>
+  .role-toggle{
+    display:flex;
+    gap:4px;
+    background:#F3E9DA;
+    border:1px solid #E3DCC9;
+    border-radius:999px;
+    padding:4px;
+    margin-bottom:28px;
+  }
+  .role-toggle button{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 14px;
+    border:none;
+    background:transparent;
+    border-radius:999px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.74rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:#5C6360;
+    cursor:pointer;
+    transition:background .3s ease, color .3s ease;
+  }
+  .role-toggle button i{ font-size:.85rem; }
+  .role-toggle button.active{
+    background:#14181C;
+    color:#fff;
+  }
+
+  /* ============ AUTH ERROR (default hidden, JS toggles) ============ */
+  .auth-error{
+    display:none;
+    align-items:flex-start;
+    gap:10px;
+    background:rgba(198,57,46,.08);
+    border:1px solid rgba(198,57,46,.25);
+    color:#b3491f;
+    border-radius:8px;
+    padding:12px 14px;
+    font-family:'Inter', sans-serif;
+    font-size:.85rem;
+    line-height:1.5;
+    margin-bottom:20px;
+  }
+  .auth-error.show{ display:flex; }
+  .auth-error i{ margin-top:2px; flex-shrink:0; }
+
+  /* ============ ROLE HINT ============ */
+  .role-hint{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.7rem;
+    color:#9AA29C;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-top:14px;
+    text-align:center;
+  }
+</style>
 </head>
 <body>
 
@@ -34,6 +97,14 @@
       <p class="eyebrow reveal">Create an account</p>
       <h1 class="reveal" style="--d:1">Join Stackly</h1>
       <p class="auth-sub reveal" style="--d:2">Save addresses, track tours, and hear about new listings first.</p>
+       <div class="role-toggle reveal" id="roleToggle">
+        <button type="button" class="active" data-role="user">
+          <i class="fa-solid fa-user"></i> Client
+        </button>
+        <button type="button" data-role="admin">
+          <i class="fa-solid fa-user-tie"></i> Studio Team
+        </button>
+      </div>
 
       <div class="auth-social reveal" style="--d:3">
         <button type="button" class="social-auth-btn"><i class="fa-brands fa-google"></i> Sign up with Google</button>
@@ -46,6 +117,7 @@
         <span>Check your email, use a password of 8+ characters, and accept the terms.</span>
       </div>
 
+      
       <form id="signupForm" class="reveal" style="--d:5">
         <div class="form-row">
           <div class="form-group">
@@ -89,5 +161,460 @@
 </section>
 
 <script src="script.js"></script>
+<script>
+  // ================= ROLE-BASED SIGN UP =================
+(function () {
+
+  const roleButtons = document.querySelectorAll('#roleToggle button');
+
+  const signupForm = document.getElementById('signupForm');
+  const signupError = document.getElementById('signupError');
+
+  const signupName = document.getElementById('signupName');
+  const signupPhone = document.getElementById('signupPhone');
+  const signupEmail = document.getElementById('signupEmail');
+  const signupPassword = document.getElementById('signupPassword');
+  const signupTerms = document.getElementById('signupTerms');
+
+  const strengthLabel = document.getElementById('strengthLabel');
+  const strengthBars = document.querySelectorAll('.auth-strength span');
+
+  let currentRole = 'user';
+
+
+  // ================= ROLE CONFIGURATION =================
+
+  const roleConfig = {
+    user: {
+      redirect: 'user-dashboard.html'
+    },
+
+    admin: {
+      redirect: 'admin-dashboard.html'
+    }
+  };
+
+
+  // ================= ROLE TOGGLE =================
+
+  function setRole(role) {
+
+    currentRole = role;
+
+    roleButtons.forEach(button => {
+
+      button.classList.toggle(
+        'active',
+        button.dataset.role === role
+      );
+
+    });
+
+    // Hide previous errors when switching role
+    signupError.classList.remove('show');
+  }
+
+
+  roleButtons.forEach(button => {
+
+    button.addEventListener('click', function () {
+
+      setRole(this.dataset.role);
+
+    });
+
+  });
+
+
+  // ================= PASSWORD SHOW / HIDE =================
+
+  document.querySelectorAll('.field-icon-btn[data-toggle]')
+    .forEach(button => {
+
+      button.addEventListener('click', function () {
+
+        const target = document.getElementById(
+          this.dataset.toggle
+        );
+
+        const icon = this.querySelector('i');
+
+        const isPassword =
+          target.type === 'password';
+
+        target.type =
+          isPassword ? 'text' : 'password';
+
+        icon.classList.toggle(
+          'fa-eye',
+          !isPassword
+        );
+
+        icon.classList.toggle(
+          'fa-eye-slash',
+          isPassword
+        );
+
+        this.setAttribute(
+          'aria-label',
+          isPassword
+            ? 'Hide password'
+            : 'Show password'
+        );
+
+      });
+
+    });
+
+
+  // ================= PASSWORD STRENGTH =================
+
+  signupPassword.addEventListener('input', function () {
+
+    const password = this.value;
+
+    let strength = 0;
+
+    // Length
+    if (password.length >= 8) {
+      strength++;
+    }
+
+    // Lowercase
+    if (/[a-z]/.test(password)) {
+      strength++;
+    }
+
+    // Uppercase
+    if (/[A-Z]/.test(password)) {
+      strength++;
+    }
+
+    // Number or special character
+    if (/[0-9!@#$%^&*]/.test(password)) {
+      strength++;
+    }
+
+
+    // Reset bars
+    strengthBars.forEach(bar => {
+      bar.classList.remove(
+        'active',
+        'weak',
+        'medium',
+        'strong'
+      );
+    });
+
+
+    // Empty password
+    if (password.length === 0) {
+
+      strengthLabel.textContent = '';
+
+      return;
+    }
+
+
+    // Update bars
+    strengthBars.forEach((bar, index) => {
+
+      if (index < strength) {
+
+        bar.classList.add('active');
+
+        if (strength <= 1) {
+          bar.classList.add('weak');
+        }
+        else if (strength <= 3) {
+          bar.classList.add('medium');
+        }
+        else {
+          bar.classList.add('strong');
+        }
+
+      }
+
+    });
+
+
+    // Strength text
+    if (strength <= 1) {
+
+      strengthLabel.textContent =
+        'Weak password';
+
+    }
+    else if (strength <= 3) {
+
+      strengthLabel.textContent =
+        'Medium password';
+
+    }
+    else {
+
+      strengthLabel.textContent =
+        'Strong password';
+
+    }
+
+  });
+
+
+  // ================= PHONE VALIDATION =================
+
+  function validatePhone(phone) {
+
+    // Remove spaces, + and -
+    const cleanPhone =
+      phone.replace(/[\s-+]/g, '');
+
+    // Indian mobile number
+    return /^[6-9][0-9]{9}$/.test(cleanPhone);
+
+  }
+
+
+  // ================= EMAIL VALIDATION =================
+
+  function validateEmail(email) {
+
+    /*
+      Valid:
+      user@gmail.com
+      user@gmail.in
+      admin@stackly.com
+      admin@stackly.in
+
+      Invalid:
+      user@gmail.net
+      user@gmail.org
+      user@gmail.co
+      user@gmail
+    */
+
+    return /^[^\s@]+@[^\s@]+\.(com|in)$/i.test(email);
+
+  }
+
+
+  // ================= SHOW ERROR =================
+
+  function showError(message) {
+
+    const errorText =
+      signupError.querySelector('span');
+
+    errorText.textContent = message;
+
+    signupError.classList.add('show');
+
+  }
+
+
+  // ================= FORM SUBMIT =================
+
+  signupForm.addEventListener('submit', function (e) {
+
+    e.preventDefault();
+
+
+    const name =
+      signupName.value.trim();
+
+    const phone =
+      signupPhone.value.trim();
+
+    const email =
+      signupEmail.value.trim();
+
+    const password =
+      signupPassword.value;
+
+    const termsAccepted =
+      signupTerms.checked;
+
+
+    // ================= NAME =================
+
+    if (name.length < 2) {
+
+      showError(
+        'Please enter your full name.'
+      );
+
+      signupName.focus();
+
+      return;
+    }
+
+
+    // ================= PHONE =================
+
+    if (!validatePhone(phone)) {
+
+      showError(
+        'Please enter a valid 10-digit Indian mobile number.'
+      );
+
+      signupPhone.focus();
+
+      return;
+    }
+
+
+    // ================= EMAIL =================
+
+    if (!validateEmail(email)) {
+
+      showError(
+        'Please enter a valid email ending with .com or .in.'
+      );
+
+      signupEmail.focus();
+
+      return;
+    }
+
+
+    // ================= PASSWORD =================
+
+    if (password.length < 8) {
+
+      showError(
+        'Password must be at least 8 characters long.'
+      );
+
+      signupPassword.focus();
+
+      return;
+    }
+
+
+    // ================= PASSWORD STRENGTH =================
+
+    const strongPassword =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*]).{8,}$/;
+
+    if (!strongPassword.test(password)) {
+
+      showError(
+        'Password must contain uppercase, lowercase, number and special character.'
+      );
+
+      signupPassword.focus();
+
+      return;
+    }
+
+
+    // ================= TERMS =================
+
+    if (!termsAccepted) {
+
+      showError(
+        'Please accept the Terms & Privacy Policy.'
+      );
+
+      signupTerms.focus();
+
+      return;
+    }
+
+
+    // ================= SUCCESS =================
+
+    signupError.classList.remove('show');
+
+
+    /*
+      Demo-only signup.
+      Data is stored locally because there is
+      no backend authentication.
+    */
+
+    localStorage.setItem(
+      'wrenholtUserName',
+      name
+    );
+
+    localStorage.setItem(
+      'wrenholtUserPhone',
+      phone
+    );
+
+    localStorage.setItem(
+      'wrenholtUserEmail',
+      email
+    );
+
+    localStorage.setItem(
+      'wrenholtUserRole',
+      currentRole
+    );
+
+    localStorage.setItem(
+      'wrenholtUserLoggedIn',
+      'true'
+    );
+
+
+    // ================= BUTTON LOADING =================
+
+    const submitButton =
+      signupForm.querySelector(
+        'button[type="submit"]'
+      );
+
+    const originalHTML =
+      submitButton.innerHTML;
+
+    submitButton.disabled = true;
+
+    submitButton.innerHTML =
+      '<i class="fa-solid fa-check"></i> Creating account…';
+
+
+    // ================= ROLE REDIRECT =================
+
+    setTimeout(() => {
+
+      window.location.href ='login.html'
+    }, 700);
+
+  });
+
+
+  // ================= CLEAR ERROR ON INPUT =================
+
+  [
+    signupName,
+    signupPhone,
+    signupEmail,
+    signupPassword
+  ].forEach(input => {
+
+    input.addEventListener('input', () => {
+
+      signupError.classList.remove('show');
+
+    });
+
+  });
+
+
+  signupTerms.addEventListener('change', () => {
+
+    signupError.classList.remove('show');
+
+  });
+
+
+  // ================= DEFAULT ROLE =================
+
+  setRole('user');
+
+})();
+</script>
 </body>
 </html>

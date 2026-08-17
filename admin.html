@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>Studio Dashboard — Wren &amp; Holt Property Studio</title>
+    <style>
+/* =========================================================
+   WREN & HOLT STUDIO DASHBOARD — DESIGN SYSTEM / TOKENS
+   (editorial real estate brand: ink + brass + sage)
+========================================================= */
+
+:root {
+  /* ---- Brand colors (matches Wren & Holt site palette) ---- */
+  --primary: #14181C;        /* ink — sidebar bg, headings, dark text */
+  --primary-dark: #0A0D10;   /* deeper ink for hovers/gradients */
+  --secondary: #B08D57;      /* brass — CTAs, active nav, accents */
+  --accent: #7C9186;         /* sage — tertiary chart/legend color */
+
+  /* ---- Neutrals ---- */
+  --white: #ffffff;
+  --text-primary: #1E2226;
+  --text-secondary: #5C6360;
+  --text-light: #9AA29C;
+  --border: #E3DCC9;
+  --bg-body: #FBF9F4;
+  --bg-section: #F3E9DA;
+
+  /* ---- Shadows ---- */
+  --shadow-sm: 0 4px 10px rgba(20, 24, 28, 0.06);
+  --shadow-md: 0 12px 30px rgba(20, 24, 28, 0.10);
+  --shadow-lg: 0 25px 60px rgba(20, 24, 28, 0.18);
+
+  /* ---- Radius ---- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-full: 999px;
+
+  /* ---- Spacing scale ---- */
+  --space-xs: 6px;
+  --space-sm: 10px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* ---- Typography scale ---- */
+  --fs-xs: 0.85rem;
+  --fs-sm: 0.95rem;
+  --fs-md: 1.05rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2rem;
+
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  --tracking-wide: 0.06em;
+  --lh-body: 1.6;
+
+  --font-primary: 'Instrument Serif', Georgia, serif;
+  --font-secondary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  --transition: all 0.25s ease;
+}
+
+/* =========================================================
+   RESET / BASE
+========================================================= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input, select, textarea { font-family: inherit; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: rgba(176, 141, 87, 0.35); border-radius: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* =========================================================
+   SIDEBAR BRAND LOCKUP (Wren & Holt logo)
+========================================================= */
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: .6em;
+    text-decoration: none;
+}
+.logo-mark{
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    letter-spacing: .05em;
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    padding: 5px 8px;
+    flex-shrink: 0;
+}
+.logo-text{
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 1.35rem;
+    color: var(--white);
+    line-height: 1.1;
+}
+.logo-text em{
+    font-style: italic;
+    color: #D3B487;
+}
+
+/* ========== DASHBOARD SHELL ========== */
+
+.dashboard-body{
+    background: var(--bg-body);
+}
+
+.dash-shell{
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========== SIDEBAR ========== */
+
+.sidebar{
+    width: 270px;
+    height: 100vh;
+    flex-shrink: 0;
+    background: var(--primary);
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    z-index: 200;
+    transition: var(--transition);
+}
+
+.sidebar-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+}
+.sidebar-close{
+    display: none;
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: var(--fs-lg);
+    cursor: pointer;
+}
+
+.sidebar-user{
+    display: none;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    background: rgba(255,255,255,.06);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-xl);
+}
+.sidebar-avatar{
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--secondary);
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-sm);
+    flex-shrink: 0;
+}
+.sidebar-user-name{
+    color: var(--white);
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+}
+.sidebar-user-email{
+    color: rgba(255,255,255,.55);
+    font-size: .78rem;
+    font-family: var(--font-mono);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.sidebar-nav{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    overflow-y: auto;
+}
+.nav-label{
+    color: rgba(255, 255, 255, .4);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+    margin: var(--space-lg) 0 var(--space-xs) var(--space-sm);
+}
+.nav-label:first-child{ margin-top: 0; }
+
+.nav-link{
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    color: rgba(255, 255, 255, .82);
+    text-decoration: none;
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-medium);
+    font-size: var(--fs-sm);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-sm);
+    position: relative;
+    transition: var(--transition);
+}
+.nav-link i{
+    width: 18px;
+    text-align: center;
+    font-size: .95rem;
+}
+.nav-link:hover{
+    background: rgba(255,255,255,.08);
+    color: var(--white);
+}
+.nav-link.active{
+    background: var(--secondary);
+    color: var(--primary);
+}
+.nav-link-danger{
+    margin-top: var(--space-lg);
+    color: rgba(255,255,255,.7);
+}
+.nav-link-danger:hover{
+    background: rgba(198,57,46,.18);
+    color: #ffb3ab;
+}
+
+.sidebar-overlay{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(20,24,28,.5);
+    z-index: 190;
+}
+
+/* ========== MAIN ========== */
+
+.dash-main{
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.topbar{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
+}
+
+.menu-toggle{
+    display: none;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: var(--fs-lg);
+    cursor: pointer;
+}
+
+.topbar-search{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-lg);
+    color: var(--primary);
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 1.1rem;
+}
+.topbar-search input{
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: var(--font-secondary);
+    font-size: var(--fs-sm);
+    color: var(--primary);
+    width: 100%;
+}
+
+.topbar-actions{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.icon-btn{
+    display: flex;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--primary);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+.icon-btn:hover{
+    background: var(--bg-section);
+}
+.notif-dot{
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--secondary);
+}
+
+.topbar-user{
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+}
+.topbar-avatar{
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-weight: var(--fw-bold);
+    font-size: .82rem;
+}
+.topbar-user-name{
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+    color: var(--primary);
+}
+.topbar-user-email{
+    font-family: var(--font-mono);
+    font-size: .72rem;
+    color: var(--text-light);
+}
+.topbar-user > i{
+    display: none;
+    color: var(--text-light);
+    font-size: .75rem;
+}
+
+/* ========== SECTIONS ========== */
+
+.dash-section{
+    display: none;
+    padding: var(--space-xl) var(--space-xl) var(--space-3xl);
+    animation: fadeSlideIn .4s ease;
+}
+.dash-section.active{
+    display: block;
+}
+
+@keyframes fadeSlideIn{
+    from{ opacity: 0; transform: translateY(12px); }
+    to{ opacity: 1; transform: translateY(0); }
+}
+
+.section-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+}
+.section-head h1{
+    font-family: var(--font-primary);
+    font-size: 2.2rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+.section-sub{
+    font-family: var(--font-secondary);
+    color: var(--text-secondary);
+    font-size: var(--fs-sm);
+    margin-top: 4px;
+}
+
+.btn-primary{
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--primary);
+    color: var(--white);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-sm);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+.btn-primary:hover{
+    background: var(--secondary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+/* ========== KPI CARDS ========== */
+
+.kpi-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+.kpi-card{
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    transition: var(--transition);
+    animation: fadeSlideIn .5s ease backwards;
+}
+.kpi-card:nth-child(2){ animation-delay: .05s; }
+.kpi-card:nth-child(3){ animation-delay: .1s; }
+.kpi-card:nth-child(4){ animation-delay: .15s; }
+.kpi-card:hover{
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+.kpi-icon{
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-section);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: var(--space-md);
+}
+.kpi-card h3{
+    font-family: var(--font-primary);
+    font-size: 2.1rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+.kpi-card p{
+    font-family: var(--font-secondary);
+    color: var(--text-secondary);
+    font-size: var(--fs-xs);
+    margin-top: 4px;
+}
+.kpi-trend{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-weight: var(--fw-medium);
+    font-size: .7rem;
+}
+.kpi-trend-up{ color: #3F5945; }
+.kpi-trend-down{ color: #b3491f; }
+
+/* ========== PANEL / TABLE ========== */
+
+.panel{
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    min-width: 0;
+}
+.panel-head{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+}
+.panel-head h2{
+    font-family: var(--font-primary);
+    font-size: 1.35rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+.panel-head-actions{
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+.link-read{
+    font-family: var(--font-mono);
+    color: var(--primary);
+    font-weight: var(--fw-medium);
+    font-size: .74rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.link-read:hover{ color: var(--secondary); }
+
+.table-wrap{ overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table{
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-secondary);
+    font-size: var(--fs-xs);
+    min-width: 560px;
+}
+thead th{
+    text-align: left;
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    font-weight: var(--fw-medium);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+tbody td{
+    padding: var(--space-md);
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+}
+tbody tr:last-child td{ border-bottom: none; }
+tbody tr{ transition: var(--transition); }
+tbody tr:hover{ background: var(--bg-body); }
+
+.status{
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-weight: var(--fw-medium);
+    font-family: var(--font-mono);
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    white-space: nowrap;
+}
+.status-transit{ background: rgba(176,141,87,.18); color: #8A6B3D; }
+.status-delivered{ background: rgba(124,145,134,.22); color: #3F5945; }
+.status-pending{ background: rgba(198,57,46,.1); color: #b3491f; }
+
+/* ========== TEAM (dashboard view) ========== */
+
+.team-dash-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+}
+.team-dash-card{
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl) var(--space-lg);
+    text-align: center;
+    transition: var(--transition);
+}
+.team-dash-card:hover{
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+}
+.team-dash-avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin: 0 auto var(--space-md);
+}
+.team-dash-card h3{
+    font-family: var(--font-primary);
+    color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 400;
+}
+.team-dash-card p{
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: .72rem;
+    margin: 6px 0 var(--space-md);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+/* ========== BADGES ========== */
+
+.role-badge{
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-full);
+    font-weight: var(--fw-medium);
+    font-size: .68rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.role-admin{ background: rgba(176,141,87,.16); color: #8A6B3D; }
+.role-customer{ background: rgba(92,99,96,.1); color: var(--text-secondary); }
+
+.sidebar-user .role-badge{
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+/* ========== CONTENT GRID (2-col panel layout) ========== */
+
+.content-grid{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1.4fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+    margin-bottom: var(--space-lg);
+}
+
+/* ========== QUICK ACTIONS ========== */
+
+.quick-actions{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+.quick-action{
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-md) var(--space-lg);
+    text-decoration: none;
+    color: var(--primary);
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+    transition: var(--transition);
+}
+.quick-action:hover{
+    border-color: var(--secondary);
+    box-shadow: var(--shadow-sm);
+    transform: translateY(-3px);
+}
+.quick-action-icon{
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-section);
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* ========== ACTIVITY FEED ========== */
+
+.activity-feed{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+.activity-item{
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+}
+.activity-item p{
+    font-family: var(--font-secondary);
+    font-size: var(--fs-xs);
+    color: var(--text-primary);
+    line-height: var(--lh-body);
+}
+.activity-time{
+    font-size: .68rem;
+    color: var(--text-light);
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.activity-icon{
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: .8rem;
+}
+.activity-icon-transit{ background: rgba(176,141,87,.18); color: #8A6B3D; }
+.activity-icon-delivered{ background: rgba(124,145,134,.22); color: #3F5945; }
+.activity-icon-pending{ background: rgba(198,57,46,.1); color: #b3491f; }
+
+/* ========== EXTRA KPI + filter tabs ========== */
+
+.kpi-grid-3{ grid-template-columns: repeat(3, 1fr); }
+
+.filter-tabs{
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2px;
+}
+.filter-tab{
+    background: var(--white);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-weight: var(--fw-medium);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    padding: var(--space-xs) var(--space-lg);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.filter-tab:hover{ border-color: var(--secondary); color: var(--secondary); }
+.filter-tab.active{ background: var(--primary); border-color: var(--primary); color: var(--white); }
+
+/* ========== BAR CHART ========== */
+
+.bar-chart{
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-lg);
+    height: 200px;
+    padding-top: var(--space-lg);
+}
+.bar-col{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+}
+.bar{
+    width: 100%;
+    max-width: 34px;
+    height: var(--h, 40%);
+    background: var(--bg-section);
+    border-radius: 3px 3px 0 0;
+    transition: var(--transition);
+    animation: growUp .6s ease backwards;
+}
+.bar-current{ background: var(--secondary); }
+.bar-col label{
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--text-light);
+}
+@keyframes growUp{
+    from{ transform: scaleY(0); transform-origin: bottom; }
+    to{ transform: scaleY(1); transform-origin: bottom; }
+}
+
+/* ========== LEGEND ========== */
+
+.legend-list{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-xs);
+    color: var(--primary);
+}
+.legend-list li{
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+.legend-list li strong{ margin-left: auto; font-family: var(--font-mono); }
+.legend-dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--c);
+    flex-shrink: 0;
+}
+.legend-bar{
+    display: flex;
+    height: 10px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+.legend-bar span{
+    width: var(--w);
+    background: var(--c);
+}
+
+/* ========== OVERVIEW CHARTS (line + donut) ========== */
+
+.overview-charts{
+    margin-top: var(--space-lg);
+}
+
+.chart-legend-inline{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-weight: var(--fw-medium);
+    font-size: .7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.dot-swatch{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--c);
+    flex-shrink: 0;
+}
+.dot-swatch-line{
+    border-radius: 2px;
+    height: 3px;
+}
+
+.line-chart-wrap{
+    width: 100%;
+}
+.line-chart{
+    width: 100%;
+    height: 200px;
+    display: block;
+    overflow: visible;
+}
+.line-chart-grid line{
+    stroke: var(--border);
+    stroke-width: 1;
+}
+.line-chart-area{
+    fill: rgba(176,141,87,.08);
+    stroke: none;
+}
+.line-chart-path{
+    fill: none;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+.line-chart-path-revenue{
+    stroke: var(--secondary);
+}
+.line-chart-path-orders{
+    stroke: var(--primary);
+    stroke-dasharray: 6 6;
+    opacity: .55;
+}
+.line-chart-dots circle{
+    fill: var(--secondary);
+    stroke: var(--white);
+    stroke-width: 2;
+}
+.line-chart-labels{
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: .7rem;
+    color: var(--text-light);
+}
+
+.donut-wrap{
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: var(--space-md) 0;
+}
+.donut-chart{
+    --p1: 65;
+    --p2: 20;
+    --p3: 15;
+    position: relative;
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: conic-gradient(
+        var(--primary) 0% calc(var(--p1) * 1%),
+        var(--secondary) calc(var(--p1) * 1%) calc((var(--p1) + var(--p2)) * 1%),
+        var(--accent) calc((var(--p1) + var(--p2)) * 1%) 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: donutIn .7s ease backwards;
+}
+@keyframes donutIn{
+    from{ opacity: 0; transform: scale(.85) rotate(-30deg); }
+    to{ opacity: 1; transform: scale(1) rotate(0); }
+}
+.donut-center{
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.donut-center strong{
+    font-family: var(--font-primary);
+    font-size: 1.6rem;
+    color: var(--primary);
+    font-weight: 400;
+}
+.donut-center span{
+    font-family: var(--font-mono);
+    font-size: .66rem;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-wide);
+}
+.donut-legend{
+    margin-bottom: 0;
+    min-width: 140px;
+    flex: 1;
+}
+
+/* ========== SETTINGS FORM ========== */
+
+.form-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+}
+.settings-form .field{
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+.settings-form label{
+    font-family: var(--font-mono);
+    font-weight: var(--fw-medium);
+    font-size: .74rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+.settings-form input{
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--bg-body);
+    font-family: var(--font-secondary);
+    font-size: var(--fs-sm);
+    color: var(--primary);
+    width: 100%;
+}
+.settings-form input:focus{ outline: 2px solid var(--secondary); background: var(--white); }
+.settings-form input:disabled{ color: var(--text-light); cursor: not-allowed; }
+
+.toggle-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-lg);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border);
+}
+.toggle-row:last-child{ border-bottom: none; }
+.toggle-title{
+    font-family: var(--font-secondary);
+    font-weight: var(--fw-semibold);
+    font-size: var(--fs-xs);
+    color: var(--primary);
+}
+.toggle-sub{
+    font-family: var(--font-secondary);
+    font-size: .74rem;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+.switch{
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    flex-shrink: 0;
+}
+.switch input{ opacity: 0; width: 0; height: 0; }
+.slider{
+    position: absolute;
+    inset: 0;
+    background: var(--border);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition);
+}
+.slider::before{
+    content: "";
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 3px;
+    top: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+.switch input:checked + .slider{ background: var(--secondary); }
+.switch input:checked + .slider::before{ transform: translateX(18px); }
+
+/* ========== EMPTY STATE ========== */
+
+.empty-state{
+    text-align: center;
+    padding: var(--space-3xl) var(--space-lg);
+}
+.empty-state i{
+    font-size: 2rem;
+    color: var(--border);
+    margin-bottom: var(--space-md);
+}
+.empty-state p{
+    font-family: var(--font-secondary);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-lg);
+}
+
+/* ========================================================= */
+/* ========== RESPONSIVE (mobile-first overrides) ========== */
+/* ========================================================= */
+
+@media (max-width: 1200px){
+    .sidebar{ width: 232px; }
+}
+
+@media (max-width: 1024px){
+    .kpi-grid{ grid-template-columns: repeat(2, 1fr); }
+    .team-dash-grid{ grid-template-columns: repeat(2, 1fr); }
+    .content-grid{ grid-template-columns: 1fr; }
+    .quick-actions{ grid-template-columns: repeat(2, 1fr); }
+    .kpi-grid-3{ grid-template-columns: 1fr 1fr; }
+    .form-grid{ grid-template-columns: 1fr; }
+    .donut-wrap{ justify-content: flex-start; }
+}
+
+@media (max-width: 900px){
+    .sidebar{
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: min(280px, 82vw);
+        transform: translateX(-100%);
+        box-shadow: var(--shadow-lg);
+    }
+    .sidebar.open{
+        transform: translateX(0);
+    }
+    .sidebar-close{ display: block; }
+    .sidebar-overlay.show{ display: block; }
+    .menu-toggle{ display: flex; align-items: center; justify-content: center; }
+    .topbar-search{ display: none; }
+    .topbar{ gap: var(--space-md); }
+}
+
+@media (max-width: 640px){
+    .kpi-grid{ grid-template-columns: 1fr 1fr; gap: var(--space-md); }
+    .kpi-card{ padding: var(--space-md); }
+    .kpi-card h3{ font-size: 1.7rem; }
+    .team-dash-grid{ grid-template-columns: 1fr; }
+    .kpi-grid-3{ grid-template-columns: 1fr; }
+    .section-head{ flex-direction: column; align-items: flex-start; }
+    .section-head .btn-primary{ width: 100%; justify-content: center; }
+    .topbar{ padding: var(--space-md); }
+    .dash-section{ padding: var(--space-lg) var(--space-md) var(--space-2xl); }
+    .quick-actions{ grid-template-columns: 1fr 1fr; gap: var(--space-sm); }
+    .quick-action{ padding: var(--space-sm) var(--space-md); font-size: .72rem; }
+    .quick-action-icon{ width: 30px; height: 30px; }
+    .panel{ padding: var(--space-md); }
+    .panel-head{ margin-bottom: var(--space-md); }
+    .bar-chart{ height: 160px; gap: var(--space-sm); }
+    .line-chart{ height: 160px; }
+    .donut-wrap{ flex-direction: column; align-items: center; text-align: center; gap: var(--space-lg); }
+    .donut-chart{ width: 140px; height: 140px; }
+    .donut-center{ width: 92px; height: 92px; }
+    .donut-legend{ width: 100%; }
+    .topbar-user-text{ font-size: .5rem; }
+    .topbar-user > i{ display: none; }
+    .icon-btn{ width: 36px; height: 36px; }
+}
+
+@media (max-width: 400px){
+    .kpi-grid{ grid-template-columns: 1fr; }
+    .quick-actions{ grid-template-columns: 1fr; }
+    .panel-head{ flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+    .panel-head-actions{ gap: var(--space-sm); }
+}
+
+@media (prefers-reduced-motion: reduce){
+    *{
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+    }
+}
+
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <div class="dash-shell">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <a href="index.html" class="logo">
+                    <span class="logo-mark">W&amp;H</span>
+                    <span class="logo-text">Wren <em>&amp;</em> Holt</span>
+                </a>
+                <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="sidebar-user">
+                <div class="sidebar-avatar">HK</div>
+                <div>
+                    <p class="sidebar-user-name">Hari Krishnan</p>
+                    <p class="sidebar-user-email">hari@wrenandholt.example</p>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <p class="nav-label">Operations</p>
+                <a href="#overview" class="nav-link active" data-section="overview">
+                    <i class="fa-solid fa-grip"></i> Overview
+                </a>
+                <a href="#clients" class="nav-link" data-section="clients">
+                    <i class="fa-solid fa-user-group"></i> Clients
+                </a>
+                <a href="#staff" class="nav-link" data-section="staff">
+                    <i class="fa-solid fa-users"></i> Agents
+                </a>
+                <a href="#requests" class="nav-link" data-section="requests">
+                    <i class="fa-solid fa-calendar-check"></i> Viewings &amp; Offers
+                </a>
+                <a href="#departments" class="nav-link" data-section="departments">
+                    <i class="fa-solid fa-building"></i> Listings &amp; Services
+                </a>
+
+                <p class="nav-label">Insights</p>
+                <a href="#analytics" class="nav-link" data-section="analytics">
+                    <i class="fa-solid fa-chart-line"></i> Analytics
+                </a>
+                <a href="#reports" class="nav-link" data-section="reports">
+                    <i class="fa-solid fa-file-lines"></i> Reports
+                </a>
+
+                <p class="nav-label">Account</p>
+                <a href="#settings" class="nav-link" data-section="settings">
+                    <i class="fa-solid fa-gear"></i> Settings
+                </a>
+                <a href="./login.html" class="nav-link nav-link-danger">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i> Log out
+                </a>
+            </nav>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ============ MAIN ============ -->
+        <div class="dash-main">
+
+            <header class="topbar">
+                <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div class="topbar-search">
+                  Studio Dashboard
+                </div>
+
+                <div class="topbar-actions">
+
+                    <div class="topbar-user">
+                        <div class="topbar-avatar"><i class="fa-solid fa-user"></i></div>
+                        <div class="topbar-user-text">
+                            <p class="topbar-user-name">Admin</p>
+                            <p class="topbar-user-email"><span id="dashboardEmail"></span></p>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ============ OVERVIEW ============ -->
+            <section class="dash-section active" id="overview">
+                <div class="section-head">
+                    <div>
+                        <h1>Studio Overview</h1>
+                        <p class="section-sub">Real-time activity across every listing, client, and deal in progress.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">New Listing <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></span>
+                        <h3>₹1.9Cr</h3>
+                        <p>Commission earned (YTD)</p>
+                        <span class="kpi-trend kpi-trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 12.4%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-building"></i></span>
+                        <h3>18</h3>
+                        <p>Active listings</p>
+                        <span class="kpi-trend kpi-trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 6.1%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-users"></i></span>
+                        <h3>1,284</h3>
+                        <p>Total clients</p>
+                        <span class="kpi-trend kpi-trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 3.8%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-star"></i></span>
+                        <h3>4.9</h3>
+                        <p>Client satisfaction</p>
+                        <span class="kpi-trend kpi-trend-up"><i class="fa-solid fa-arrow-trend-up"></i> 0.2%</span>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <a href="./404.html" class="quick-action">
+                        <span class="quick-action-icon"><i class="fa-solid fa-house-circle-check"></i></span>
+                        New Listing
+                    </a>
+                    <a href="./404.html" class="quick-action">
+                        <span class="quick-action-icon"><i class="fa-solid fa-file-signature"></i></span>
+                        Send Offer
+                    </a>
+                    <a href="./404.html" class="quick-action">
+                        <span class="quick-action-icon"><i class="fa-solid fa-file-lines"></i></span>
+                        Generate Report
+                    </a>
+                    <a href="./404.html" class="quick-action">
+                        <span class="quick-action-icon"><i class="fa-solid fa-envelope"></i></span>
+                        Client Newsletter
+                    </a>
+                </div>
+
+                <!-- ===== Overview charts row ===== -->
+                <div class="content-grid overview-charts">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Commission &amp; listings trend</h2>
+                            <div class="panel-head-actions">
+                                <span class="chart-legend-inline"><span class="dot-swatch" style="--c:var(--secondary)"></span>Commission</span>
+                                <span class="chart-legend-inline"><span class="dot-swatch dot-swatch-line" style="--c:var(--primary)"></span>Listings</span>
+                            </div>
+                        </div>
+                        <div class="line-chart-wrap">
+                            <svg class="line-chart" viewBox="0 0 560 220" preserveAspectRatio="none" role="img" aria-label="Commission earned and active listings trend over the last 7 months">
+                                <g class="line-chart-grid">
+                                    <line x1="0" y1="10" x2="560" y2="10"></line>
+                                    <line x1="0" y1="62" x2="560" y2="62"></line>
+                                    <line x1="0" y1="114" x2="560" y2="114"></line>
+                                    <line x1="0" y1="166" x2="560" y2="166"></line>
+                                    <line x1="0" y1="200" x2="560" y2="200"></line>
+                                </g>
+                                <polygon class="line-chart-area" points="0,140 93,120 186,150 280,86 373,110 466,58 560,20 560,200 0,200"></polygon>
+                                <polyline class="line-chart-path line-chart-path-revenue" points="0,140 93,120 186,150 280,86 373,110 466,58 560,20"></polyline>
+                                <polyline class="line-chart-path line-chart-path-orders" points="0,176 93,168 186,178 280,150 373,158 466,132 560,104"></polyline>
+                                <g class="line-chart-dots">
+                                    <circle cx="560" cy="20" r="5"></circle>
+                                </g>
+                            </svg>
+                            <div class="line-chart-labels">
+                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Listing status split</h2>
+                        </div>
+                        <div class="donut-wrap">
+                            <div class="donut-chart" style="--p1:65; --p2:20; --p3:15;">
+                                <div class="donut-center">
+                                    <strong>18</strong>
+                                    <span>listings</span>
+                                </div>
+                            </div>
+                            <ul class="legend-list donut-legend">
+                                <li><span class="legend-dot" style="--c:var(--primary)"></span> Closed <strong>65%</strong></li>
+                                <li><span class="legend-dot" style="--c:var(--secondary)"></span> Under offer <strong>20%</strong></li>
+                                <li><span class="legend-dot" style="--c:var(--accent)"></span> Active <strong>15%</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Recent deals</h2>
+                            <a href="./404.html" class="link-read">Export <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr><th>Deal ID</th><th>Client</th><th>Property</th><th>Amount</th><th>Status</th><th></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>#DL-4921</td><td>Priya Nandakumar</td><td>Sundara Villa, Whitefield</td>
+                                        <td>₹2.4 Cr</td>
+                                        <td><span class="status status-transit">Under Offer</span></td>
+                                        <td><a href="./404.html" class="link-read">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#DL-4918</td><td>Anitha Menon</td><td>The Meridian, Avinashi Road</td>
+                                        <td>₹4.2 Cr</td>
+                                        <td><span class="status status-delivered">Closed</span></td>
+                                        <td><a href="./404.html" class="link-read">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#DL-4902</td><td>Dr. S. Iyer</td><td>Corner Plot, Saravanampatti</td>
+                                        <td>₹95 L</td>
+                                        <td><span class="status status-pending">Pending Offer</span></td>
+                                        <td><a href="./404.html" class="link-read">View</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#DL-4897</td><td>Priya Venkat</td><td>Larkspur House, RA Puram</td>
+                                        <td>₹1.65 Cr</td>
+                                        <td><span class="status status-transit">Under Offer</span></td>
+                                        <td><a href="./404.html" class="link-read">View</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Agent activity</h2>
+                            <a href="./404.html" class="link-read">View all</a>
+                        </div>
+                        <ul class="activity-feed">
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-transit"><i class="fa-solid fa-user-plus"></i></span>
+                                <div>
+                                    <p><strong>Priya Venkat</strong> was onboarded as a new client</p>
+                                    <span class="activity-time">1 hour ago</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-delivered"><i class="fa-solid fa-circle-check"></i></span>
+                                <div>
+                                    <p><strong>Anitha Menon's</strong> deal on The Meridian #DL-4918 was closed</p>
+                                    <span class="activity-time">4 hours ago</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-pending"><i class="fa-solid fa-star"></i></span>
+                                <div>
+                                    <p><strong>Ravi Kumar</strong> left a 5-star review after closing on Sundara Villa</p>
+                                    <span class="activity-time">Yesterday</span>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <span class="activity-icon activity-icon-transit"><i class="fa-solid fa-file-lines"></i></span>
+                                <div>
+                                    <p><strong>Priya Menon</strong> generated the monthly commission report</p>
+                                    <span class="activity-time">Yesterday</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ CLIENTS ============ -->
+            <section class="dash-section" id="clients">
+                <div class="section-head">
+                    <div>
+                        <h1>Clients</h1>
+                        <p class="section-sub">All buyer and seller accounts across Wren &amp; Holt.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Add Client <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid kpi-grid-3">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-users"></i></span>
+                        <h3>1,284</h3>
+                        <p>Total clients</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-user-check"></i></span>
+                        <h3>1,096</h3>
+                        <p>Repeat clients</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-user-clock"></i></span>
+                        <h3>52</h3>
+                        <p>New this week</p>
+                    </div>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All</button>
+                    <button class="filter-tab">Buying</button>
+                    <button class="filter-tab">Selling</button>
+                    <button class="filter-tab">New This Month</button>
+                </div>
+
+                <div class="panel">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Name</th><th>Email</th><th>Client Tier</th><th>Status</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ravi Kumar</td><td>ravi@client.wrenandholt.example</td>
+                                    <td><span class="role-badge role-admin">VIP Buyer</span></td>
+                                    <td><span class="status status-delivered">Active</span></td>
+                                    <td><a href="./404.html" class="link-read">Manage</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Anitha Menon</td><td>anitha@client.wrenandholt.example</td>
+                                    <td><span class="role-badge role-customer">Standard</span></td>
+                                    <td><span class="status status-delivered">Active</span></td>
+                                    <td><a href="./404.html" class="link-read">Manage</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Dr. S. Iyer</td><td>s.iyer@client.wrenandholt.example</td>
+                                    <td><span class="role-badge role-customer">Standard</span></td>
+                                    <td><span class="status status-pending">Under Offer</span></td>
+                                    <td><a href="./404.html" class="link-read">Manage</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Priya Venkat</td><td>priya@client.wrenandholt.example</td>
+                                    <td><span class="role-badge role-customer">Standard</span></td>
+                                    <td><span class="status status-delivered">Active</span></td>
+                                    <td><a href="./404.html" class="link-read">Manage</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ AGENTS ============ -->
+            <section class="dash-section" id="staff">
+                <div class="section-head">
+                    <div>
+                        <h1>Agents</h1>
+                        <p class="section-sub">Manage agent roles and client-load assignments.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Add Team Member <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid kpi-grid-3">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-users"></i></span>
+                        <h3>9</h3>
+                        <p>Total team members</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-sitemap"></i></span>
+                        <h3>4</h3>
+                        <p>Departments</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-user-clock"></i></span>
+                        <h3>2</h3>
+                        <p>Open roles</p>
+                    </div>
+                </div>
+
+                <div class="filter-tabs">
+                    <button class="filter-tab active">All</button>
+                    <button class="filter-tab">Buyer Advisory</button>
+                    <button class="filter-tab">Seller Advisory</button>
+                    <button class="filter-tab">Legal &amp; Registration</button>
+                </div>
+
+                <div class="team-dash-grid">
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">HK</div>
+                        <h3>Hari Krishnan</h3>
+                        <p>Founder &amp; Principal Agent</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">AR</div>
+                        <h3>Aditi Rao</h3>
+                        <p>Buyer Advisory Lead</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">NV</div>
+                        <h3>Nikhil Varma</h3>
+                        <p>Seller Advisory Lead</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">PM</div>
+                        <h3>Priya Menon</h3>
+                        <p>Legal &amp; Registration</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">FS</div>
+                        <h3>Farhan Sheikh</h3>
+                        <p>Site &amp; Plot Specialist</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                    <div class="team-dash-card">
+                        <div class="team-dash-avatar">MP</div>
+                        <h3>Meera Pillai</h3>
+                        <p>Client Experience Manager</p>
+                        <a href="./404.html" class="link-read">View profile</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ VIEWINGS & OFFERS ============ -->
+            <section class="dash-section" id="requests">
+                <div class="section-head">
+                    <div>
+                        <h1>Viewings &amp; Offers</h1>
+                        <p class="section-sub">All scheduled viewings, offers, and closed deals across active clients.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">New Deal <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid kpi-grid-3">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-hourglass-half"></i></span>
+                        <h3>7</h3>
+                        <p>Pending Offers</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-calendar-check"></i></span>
+                        <h3>11</h3>
+                        <p>Scheduled Viewings</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-circle-check"></i></span>
+                        <h3>142</h3>
+                        <p>Deals closed this year</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>All deals</h2>
+                        <a href="./404.html" class="link-read">Filter <i class="fa-solid fa-sliders"></i></a>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Deal ID</th><th>Client</th><th>Property</th><th>Amount</th><th>Payment</th><th>Status</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#DL-4921</td><td>Ravi Kumar</td><td>Sundara Villa, Whitefield</td><td>₹2.4 Cr</td>
+                                    <td><span class="status status-delivered">Deposit Paid</span></td>
+                                    <td><span class="status status-transit">Under Offer</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#DL-4918</td><td>Anitha Menon</td><td>The Meridian, Avinashi Road</td><td>₹4.2 Cr</td>
+                                    <td><span class="status status-delivered">Paid in Full</span></td>
+                                    <td><span class="status status-delivered">Closed</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#DL-4902</td><td>Dr. S. Iyer</td><td>Corner Plot, Saravanampatti</td><td>₹95 L</td>
+                                    <td><span class="status status-pending">Deposit Due</span></td>
+                                    <td><span class="status status-pending">Pending Offer</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#DL-4897</td><td>Priya Venkat</td><td>Larkspur House, RA Puram</td><td>₹1.65 Cr</td>
+                                    <td><span class="status status-delivered">Deposit Paid</span></td>
+                                    <td><span class="status status-transit">Under Offer</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                                <tr>
+                                    <td>#DL-4889</td><td>Carlos Rivera</td><td>The Weld Penthouse</td><td>₹3.1 Cr</td>
+                                    <td><span class="status status-delivered">Paid in Full</span></td>
+                                    <td><span class="status status-delivered">Closed</span></td>
+                                    <td><a href="./404.html" class="link-read">View</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ LISTINGS & SERVICES (Departments) ============ -->
+            <section class="dash-section" id="departments">
+                <div class="section-head">
+                    <div>
+                        <h1>Listings &amp; Services</h1>
+                        <p class="section-sub">Manage Wren &amp; Holt's property types, packages, and published offerings.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Add Listing <i class="fa-solid fa-plus"></i></a>
+                </div>
+
+                <div class="kpi-grid kpi-grid-3">
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-building"></i></span>
+                        <h3>6</h3>
+                        <p>Property types</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-circle-check"></i></span>
+                        <h3>18</h3>
+                        <p>Active listings</p>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-icon"><i class="fa-solid fa-triangle-exclamation"></i></span>
+                        <h3>7</h3>
+                        <p>Pending offers</p>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Most active listings this month</h2>
+                        <a href="./404.html" class="link-read">View all</a>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Property Type</th><th>Category</th><th>Avg. Days on Market</th><th>Deals Closed</th><th>Commission Generated</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Independent Villas</td><td>Residential</td><td>21 days</td><td>52</td><td>₹91.3L</td>
+                                    <td><a href="./404.html" class="link-read">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Apartments &amp; Flats</td><td>Residential</td><td>14 days</td><td>34</td><td>₹38.4L</td>
+                                    <td><a href="./404.html" class="link-read">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Penthouses</td><td>Luxury</td><td>34 days</td><td>17</td><td>₹1.37Cr</td>
+                                    <td><a href="./404.html" class="link-read">Edit</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Plots &amp; Land</td><td>Land</td><td>28 days</td><td>41</td><td>₹28.9L</td>
+                                    <td><a href="./404.html" class="link-read">Edit</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ ANALYTICS ============ -->
+            <section class="dash-section" id="analytics">
+                <div class="section-head">
+                    <div>
+                        <h1>Analytics</h1>
+                        <p class="section-sub">Studio performance across commission, listing turnover, and client satisfaction.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">Export Report <i class="fa-solid fa-arrow-up-from-bracket"></i></a>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Commission &amp; deals per month</h2>
+                            <a href="./404.html" class="link-read">Last 6 months</a>
+                        </div>
+                        <div class="bar-chart">
+                            <div class="bar-col"><span class="bar" style="--h:48%"></span><label>Feb</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:62%"></span><label>Mar</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:41%"></span><label>Apr</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:76%"></span><label>May</label></div>
+                            <div class="bar-col"><span class="bar" style="--h:59%"></span><label>Jun</label></div>
+                            <div class="bar-col"><span class="bar bar-current" style="--h:94%"></span><label>Jul</label></div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2>Commission by property type</h2>
+                        </div>
+                        <ul class="legend-list">
+                            <li><span class="legend-dot" style="--c:var(--primary)"></span> Villas <strong>48%</strong></li>
+                            <li><span class="legend-dot" style="--c:var(--secondary)"></span> Apartments <strong>22%</strong></li>
+                            <li><span class="legend-dot" style="--c:var(--accent)"></span> Plots &amp; Land <strong>18%</strong></li>
+                            <li><span class="legend-dot" style="--c:var(--text-light)"></span> Commercial <strong>12%</strong></li>
+                        </ul>
+                        <div class="legend-bar">
+                            <span style="--w:48%; --c:var(--primary)"></span>
+                            <span style="--w:22%; --c:var(--secondary)"></span>
+                            <span style="--w:18%; --c:var(--accent)"></span>
+                            <span style="--w:12%; --c:var(--text-light)"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ REPORTS ============ -->
+            <section class="dash-section" id="reports">
+                <div class="section-head">
+                    <div>
+                        <h1>Reports</h1>
+                        <p class="section-sub">Generate and download studio performance reports.</p>
+                    </div>
+                    <a href="./404.html" class="btn-primary">New Report <i class="fa-solid fa-plus"></i></a>
+                </div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <h2>Generated reports</h2>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr><th>Report</th><th>Type</th><th>Generated</th><th>Size</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monthly Listings Report — June</td><td>Performance</td><td>Jul 01, 2026</td><td>1.4 MB</td>
+                                    <td><a href="./404.html" class="link-read">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Commission Summary — Q2</td><td>Finance</td><td>Jun 30, 2026</td><td>920 KB</td>
+                                    <td><a href="./404.html" class="link-read">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Client Satisfaction Report</td><td>Community</td><td>Jun 22, 2026</td><td>780 KB</td>
+                                    <td><a href="./404.html" class="link-read">Download</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Deal Analytics — May</td><td>Analytics</td><td>Jun 01, 2026</td><td>520 KB</td>
+                                    <td><a href="./404.html" class="link-read">Download</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ SETTINGS ============ -->
+            <section class="dash-section" id="settings">
+                <div class="section-head">
+                    <div>
+                        <h1>Settings</h1>
+                        <p class="section-sub">Studio admin configuration and preferences.</p>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <div class="panel">
+                        <div class="panel-head"><h2>Profile</h2></div>
+                        <form class="settings-form" id="settingsForm">
+                            <div class="form-grid">
+                                <div class="field">
+                                    <label for="sName">Full name</label>
+                                    <input type="text" id="sName" value="" />
+                                </div>
+                                <div class="field">
+                                    <label for="sEmail">Email</label>
+                                    <input type="email" id="sEmail" value="" />
+                                </div>
+                                <div class="field">
+                                    <label for="sPhone">Phone</label>
+                                    <input type="tel" id="sPhone" placeholder="Add phone number" />
+                                </div>
+                                <div class="field">
+                                    <label for="sRole">Role</label>
+                                    <input type="text" id="sRole" value="Admin — Principal Agent" disabled />
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save changes <i class="fa-solid fa-check"></i></button>
+                        </form>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-head"><h2>Studio preferences</h2></div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">New listing alerts</p>
+                                <p class="toggle-sub">Email when a client submits a new listing enquiry</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Viewing alerts</p>
+                                <p class="toggle-sub">Notify when a client's scheduled viewing is approaching</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                        <div class="toggle-row">
+                            <div>
+                                <p class="toggle-title">Weekly studio digest</p>
+                                <p class="toggle-sub">Summary of commission, deals, and client activity</p>
+                            </div>
+                            <label class="switch"><input type="checkbox" checked /><span class="slider"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebarClose = document.getElementById('sidebarClose');
+  const navLinks = document.querySelectorAll('.nav-link[data-section]');
+  const sections = document.querySelectorAll('.dash-section');
+
+  /* ---------- Mobile sidebar open/close ---------- */
+  const openSidebar = () => {
+    sidebar.classList.add('open');
+    overlay.classList.add('show');
+  };
+  const closeSidebar = () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  };
+  menuToggle?.addEventListener('click', openSidebar);
+  sidebarClose?.addEventListener('click', closeSidebar);
+  overlay?.addEventListener('click', closeSidebar);
+
+  /* ---------- Section routing (sidebar acts as in-page nav) ---------- */
+  const showSection = (id) => {
+    sections.forEach(sec => sec.classList.toggle('active', sec.id === id));
+    navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.dataset.section;
+      showSection(id);
+      history.replaceState(null, '', `#${id}`);
+      closeSidebar();
+    });
+  });
+
+  /* Load section from URL hash on first paint, default to overview */
+  const initialId = window.location.hash.replace('#', '');
+  const validIds = Array.from(sections).map(s => s.id);
+  showSection(validIds.includes(initialId) ? initialId : 'overview');
+
+  /* ---------- Filter tabs (visual state only — wire to real data as needed) ---------- */
+  document.querySelectorAll('.filter-tabs').forEach(group => {
+    group.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        group.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      });
+    });
+  });
+
+  /* ---------- Notification bell (stub) ---------- */
+  const notifBtn = document.getElementById('notifBtn');
+  notifBtn?.addEventListener('click', () => {
+    // Reserved for a future notifications panel
+  });
+
+  /* ---------- Settings form (demo save) ---------- */
+  const settingsForm = document.getElementById('settingsForm');
+  settingsForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = settingsForm.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Saved!';
+    window.setTimeout(() => { btn.innerHTML = original; }, 2000);
+  });
+
+  /* ---------- Topbar email (falls back if nothing stored yet) ---------- */
+ const dashboardEmail =
+    document.getElementById('dashboardEmail');
+
+const userEmail =
+    localStorage.getItem('wrenholtUserEmail');
+
+if (dashboardEmail && userEmail) {
+    dashboardEmail.textContent = userEmail;
+}
+});
+
+    </script>
+</body>
+</html>

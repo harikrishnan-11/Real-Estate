@@ -9,6 +9,70 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
+<style>
+  /* ============ ROLE TOGGLE (added) ============ */
+  .role-toggle{
+    display:flex;
+    gap:4px;
+    background:#F3E9DA;
+    border:1px solid #E3DCC9;
+    border-radius:999px;
+    padding:4px;
+    margin-bottom:28px;
+  }
+  .role-toggle button{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:10px 14px;
+    border:none;
+    background:transparent;
+    border-radius:999px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.74rem;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:#5C6360;
+    cursor:pointer;
+    transition:background .3s ease, color .3s ease;
+  }
+  .role-toggle button i{ font-size:.85rem; }
+  .role-toggle button.active{
+    background:#14181C;
+    color:#fff;
+  }
+
+  /* ============ AUTH ERROR (default hidden, JS toggles) ============ */
+  .auth-error{
+    display:none;
+    align-items:flex-start;
+    gap:10px;
+    background:rgba(198,57,46,.08);
+    border:1px solid rgba(198,57,46,.25);
+    color:#b3491f;
+    border-radius:8px;
+    padding:12px 14px;
+    font-family:'Inter', sans-serif;
+    font-size:.85rem;
+    line-height:1.5;
+    margin-bottom:20px;
+  }
+  .auth-error.show{ display:flex; }
+  .auth-error i{ margin-top:2px; flex-shrink:0; }
+
+  /* ============ ROLE HINT ============ */
+  .role-hint{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.7rem;
+    color:#9AA29C;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-top:14px;
+    text-align:center;
+  }
+</style>
 </head>
 <body>
 
@@ -31,19 +95,29 @@
   <div class="auth-panel">
     <div class="auth-card">
       <a href="./index.html" class="auth-back reveal"><i class="fa-solid fa-arrow-left"></i> Back to site</a>
-      <p class="eyebrow reveal">Client login</p>
-      <h1 class="reveal" style="--d:1">Welcome back</h1>
-      <p class="auth-sub reveal" style="--d:2">Log in to track your shortlist, tours and offers.</p>
+
+      <div class="role-toggle reveal" id="roleToggle">
+        <button type="button" class="active" data-role="user">
+          <i class="fa-solid fa-user"></i> Client
+        </button>
+        <button type="button" data-role="admin">
+          <i class="fa-solid fa-user-tie"></i> Studio Team
+        </button>
+      </div>
+
+      <p class="eyebrow reveal" id="authEyebrow">Client login</p>
+      <h1 class="reveal" style="--d:1" id="authTitle">Welcome back</h1>
+      <p class="auth-sub reveal" style="--d:2" id="authSub">Log in to track your shortlist, tours and offers.</p>
 
       <div class="auth-social reveal" style="--d:3">
-        <button type="button" class="social-auth-btn"><i class="fa-brands fa-google"></i> Continue with Google</button>
-        <button type="button" class="social-auth-btn"><i class="fa-brands fa-apple"></i> Continue with Apple</button>
+        <button type="button" class="social-auth-btn" onclick="window.location.href='404.html'"><i class="fa-brands fa-google"></i> Continue with Google</button>
+        <button type="button" class="social-auth-btn" onclick="window.location.href='404.html'"><i class="fa-brands fa-apple"></i> Continue with Apple</button>
       </div>
       <div class="auth-divider reveal" style="--d:4">or continue with email</div>
 
       <div class="auth-error" id="loginError">
         <i class="fa-solid fa-circle-exclamation"></i>
-        <span>Enter a valid email and a password of at least 6 characters.</span>
+        <span id="loginErrorText">Enter a valid email and a password of at least 6 characters.</span>
       </div>
 
       <form id="loginForm" class="reveal" style="--d:5">
@@ -65,12 +139,14 @@
             <input type="checkbox" id="rememberMe">
             Remember me
           </label>
-          <a href="./contact.html" class="auth-link">Forgot password?</a>
+          <a href="./404.html" class="auth-link">Forgot password?</a>
         </div>
         <button type="submit" class="btn btn-brass btn-full">
-          <span class="btn-label">Log in</span>
+          <span class="btn-label" id="loginBtnLabel">Log in</span>
         </button>
       </form>
+
+      <p class="role-hint" id="roleHint">Logging in as a client. Studio team members should switch the tab above.</p>
 
       <p class="auth-foot">New to Stackly? <a href="./signup.html" class="auth-link">Create an account</a></p>
     </div>
@@ -78,5 +154,148 @@
 </section>
 
 <script src="script.js"></script>
+<script>
+// ================= ROLE-BASED LOGIN =================
+(function(){
+  const roleButtons = document.querySelectorAll('#roleToggle button');
+  const authEyebrow = document.getElementById('authEyebrow');
+  const authTitle = document.getElementById('authTitle');
+  const authSub = document.getElementById('authSub');
+  const loginBtnLabel = document.getElementById('loginBtnLabel');
+  const roleHint = document.getElementById('roleHint');
+  const loginForm = document.getElementById('loginForm');
+  const loginError = document.getElementById('loginError');
+  const loginErrorText = document.getElementById('loginErrorText');
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+
+  const copy = {
+    user: {
+      eyebrow: 'Client login',
+      title: 'Welcome back',
+      sub: 'Log in to track your shortlist, tours and offers.',
+      btn: 'Log in',
+      hint: 'Logging in as a client. Studio team members should switch the tab above.',
+      redirect: 'user-dashboard.html'
+    },
+    admin: {
+      eyebrow: 'Studio team login',
+      title: 'Welcome back, team',
+      sub: 'Log in to manage listings, clients and deals.',
+      btn: 'Log in to studio',
+      hint: 'Logging in as studio staff. Clients should switch the tab above.',
+      redirect: 'admin-dashboard.html'
+    }
+  };
+
+  let currentRole = 'user';
+
+  // ================= ROLE SWITCH =================
+  function setRole(role){
+    currentRole = role;
+
+    roleButtons.forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.role === role);
+    });
+
+    const c = copy[role];
+
+    authEyebrow.textContent = c.eyebrow;
+    authTitle.textContent = c.title;
+    authSub.textContent = c.sub;
+    loginBtnLabel.textContent = c.btn;
+    roleHint.textContent = c.hint;
+
+    loginError.classList.remove('show');
+  }
+
+  roleButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setRole(btn.dataset.role);
+    });
+  });
+
+  // ================= PASSWORD SHOW / HIDE =================
+  document.querySelectorAll('.field-icon-btn[data-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.toggle);
+      const icon = btn.querySelector('i');
+
+      const isPassword = target.type === 'password';
+
+      target.type = isPassword ? 'text' : 'password';
+
+      icon.classList.toggle('fa-eye', !isPassword);
+      icon.classList.toggle('fa-eye-slash', isPassword);
+    });
+  });
+
+  // ================= LOGIN VALIDATION =================
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    /*
+      Email validation:
+      - Must contain a valid email format
+      - Must end with .com OR .in
+      - Case-insensitive
+    */
+    const emailOk = /^[^\s@]+@[^\s@]+\.(com|in)$/i.test(email);
+
+    // Password must contain at least 6 characters
+    const passwordOk = password.length >= 6;
+
+    // ================= VALIDATION ERROR =================
+    if (!emailOk && !passwordOk) {
+      loginErrorText.textContent =
+        'Enter a valid email ending with .com or .in and a password of at least 6 characters.';
+
+      loginError.classList.add('show');
+      return;
+    }
+
+    if (!emailOk) {
+      loginErrorText.textContent =
+        'Please enter a valid email address ending with .com or .in.';
+
+      loginError.classList.add('show');
+      return;
+    }
+
+    if (!passwordOk) {
+      loginErrorText.textContent =
+        'Password must be at least 6 characters long.';
+
+      loginError.classList.add('show');
+      return;
+    }
+
+    // ================= DEMO AUTH =================
+    // No backend authentication.
+    // Any valid email + password will succeed.
+
+    localStorage.setItem('wrenholtUserEmail', email);
+
+    // ================= LOGIN BUTTON =================
+    const btn = loginForm.querySelector('button[type="submit"]');
+    const original = btn.innerHTML;
+
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Logging in…';
+    btn.disabled = true;
+
+    // ================= REDIRECT =================
+    setTimeout(() => {
+      window.location.href = copy[currentRole].redirect;
+    }, 500);
+  });
+
+  // ================= DEFAULT ROLE =================
+  setRole('user');
+
+})();
+</script>
 </body>
 </html>
