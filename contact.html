@@ -9,6 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="style.css">
+<style>
+  .input-error {
+  border: 1px solid #dc3545 !important;
+  outline: none;
+}
+
+.error-message {
+  display: block;
+  margin-top: 5px;
+  color: #dc3545;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.input-error:focus {
+  border-color: #dc3545 !important;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.1);
+}
+</style>
 </head>
 <body>
 
@@ -247,86 +266,308 @@
 
 <script src="script.js"></script>
   <script>
-document.getElementById("contactForm").addEventListener("submit", function (e) {
-  e.preventDefault();
+const form = document.getElementById("contactForm");
 
-  const name = document.getElementById("cName");
-  const phone = document.getElementById("cPhone");
-  const email = document.getElementById("cEmail");
-  const interest = document.getElementById("cInterest");
-  const message = document.getElementById("cMessage");
+const name = document.getElementById("cName");
+const phone = document.getElementById("cPhone");
+const email = document.getElementById("cEmail");
+const interest = document.getElementById("cInterest");
+const message = document.getElementById("cMessage");
 
-  let isValid = true;
 
-  // Remove previous errors
-  document.querySelectorAll(".error-message").forEach(el => el.remove());
-  document.querySelectorAll(".input-error").forEach(el => {
-    el.classList.remove("input-error");
-  });
+// ===============================
+// ERROR FUNCTION
+// ===============================
 
-  function showError(input, text) {
+function showError(input, message) {
+
+    removeError(input);
+
     input.classList.add("input-error");
 
     const error = document.createElement("small");
+
     error.className = "error-message";
-    error.textContent = text;
+    error.textContent = message;
 
     input.parentElement.appendChild(error);
-    isValid = false;
-  }
+}
 
-  // Full Name
-  const nameValue = name.value.trim();
 
-  if (nameValue === "") {
-    showError(name, "Please enter your full name.");
-  } else if (nameValue.length < 3) {
-    showError(name, "Name must be at least 3 characters.");
-  } else if (!/^[A-Za-z\s.'-]+$/.test(nameValue)) {
-    showError(name, "Please enter a valid name.");
-  }
+// ===============================
+// REMOVE ERROR
+// ===============================
 
-  // Phone
-  const phoneValue = phone.value.trim();
-  const cleanPhone = phoneValue.replace(/[\s()-]/g, "");
+function removeError(input) {
 
-  if (phoneValue === "") {
-    showError(phone, "Please enter your phone number.");
-  } else if (!/^\+?[0-9]{10,13}$/.test(cleanPhone)) {
-    showError(phone, "Please enter a valid phone number.");
-  }
+    input.classList.remove("input-error");
 
-  // Email
-  const emailValue = email.value.trim();
+    const oldError =
+        input.parentElement.querySelector(".error-message");
 
-  if (emailValue === "") {
-    showError(email, "Please enter your email address.");
-  } else if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.(com|in)$/i.test(emailValue)) {
-    showError(email, "Please enter a valid .com or .in email address.");
-  }
+    if (oldError) {
+        oldError.remove();
+    }
+}
 
-  // Interest
-  if (interest.value.trim() === "") {
-    showError(interest, "Please select an option.");
-  }
 
-  // Message
-  const messageValue = message.value.trim();
+// ===============================
+// NAME VALIDATION
+// ===============================
 
-  if (messageValue === "") {
-    showError(message, "Please enter your message.");
-  } else if (messageValue.length < 10) {
-    showError(message, "Message must be at least 10 characters.");
-  } else if (messageValue.length > 500) {
-    showError(message, "Message cannot exceed 500 characters.");
-  }
+function validateName() {
 
-  // Success
-  if (isValid) {
+    const value = name.value.trim();
 
-    // Reset form
-    this.reset();
-  }
+    if (value === "") {
+
+        showError(name, "Please enter your full name.");
+        return false;
+
+    }
+
+    if (value.length < 3) {
+
+        showError(name, "Name must be at least 3 characters.");
+        return false;
+
+    }
+
+    if (value.length > 50) {
+
+        showError(name, "Name cannot exceed 50 characters.");
+        return false;
+
+    }
+
+    if (!/^[A-Za-z]+(?:[ '.-][A-Za-z]+)*$/.test(value)) {
+
+        showError(name, "Please enter a valid name.");
+        return false;
+
+    }
+
+    removeError(name);
+    return true;
+}
+
+
+// ===============================
+// PHONE VALIDATION
+// ===============================
+
+function validatePhone() {
+
+    const value = phone.value.trim();
+
+    const cleanPhone =
+        value.replace(/[\s()-]/g, "");
+
+    if (value === "") {
+
+        showError(phone, "Please enter your phone number.");
+        return false;
+
+    }
+
+    if (!/^(\+91)?[6-9][0-9]{9}$/.test(cleanPhone)) {
+
+        showError(
+            phone,
+            "Please enter a valid Indian mobile number."
+        );
+
+        return false;
+    }
+
+    removeError(phone);
+    return true;
+}
+
+
+// ===============================
+// EMAIL VALIDATION
+// ===============================
+
+function validateEmail() {
+
+    const value = email.value.trim();
+
+    if (value === "") {
+
+        showError(email, "Please enter your email address.");
+        return false;
+
+    }
+
+    if (value.length > 100) {
+
+        showError(email, "Email cannot exceed 100 characters.");
+        return false;
+
+    }
+
+    const emailRegex =
+        /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/;
+
+    if (!emailRegex.test(value)) {
+
+        showError(email, "Please enter a valid email address.");
+        return false;
+
+    }
+
+    if (!/\.(com|in)$/i.test(value)) {
+
+        showError(
+            email,
+            "Email must end with .com or .in."
+        );
+
+        return false;
+    }
+
+    removeError(email);
+    return true;
+}
+
+
+// ===============================
+// INTEREST VALIDATION
+// ===============================
+
+function validateInterest() {
+
+    if (interest.value.trim() === "") {
+
+        showError(
+            interest,
+            "Please select an option."
+        );
+
+        return false;
+    }
+
+    removeError(interest);
+    return true;
+}
+
+
+// ===============================
+// MESSAGE VALIDATION
+// ===============================
+
+function validateMessage() {
+
+    const value = message.value.trim();
+
+    if (value === "") {
+
+        showError(
+            message,
+            "Please enter your message."
+        );
+
+        return false;
+    }
+
+    if (value.length < 10) {
+
+        showError(
+            message,
+            "Message must be at least 10 characters."
+        );
+
+        return false;
+    }
+
+    if (value.length > 500) {
+
+        showError(
+            message,
+            "Message cannot exceed 500 characters."
+        );
+
+        return false;
+    }
+
+    removeError(message);
+    return true;
+}
+
+
+// ===============================
+// LIVE VALIDATION
+// ===============================
+
+name.addEventListener("input", validateName);
+
+phone.addEventListener("input", validatePhone);
+
+email.addEventListener("input", validateEmail);
+
+interest.addEventListener("change", validateInterest);
+
+message.addEventListener("input", validateMessage);
+
+
+// ===============================
+// FORM SUBMIT
+// ===============================
+
+form.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    const nameValid = validateName();
+    const phoneValid = validatePhone();
+    const emailValid = validateEmail();
+    const interestValid = validateInterest();
+    const messageValid = validateMessage();
+
+
+    // STOP SUBMISSION IF ANY FIELD IS INVALID
+
+    if (
+        !nameValid ||
+        !phoneValid ||
+        !emailValid ||
+        !interestValid ||
+        !messageValid
+    ) {
+
+        // Focus first invalid field
+
+        if (!nameValid) {
+            name.focus();
+        }
+        else if (!phoneValid) {
+            phone.focus();
+        }
+        else if (!emailValid) {
+            email.focus();
+        }
+        else if (!interestValid) {
+            interest.focus();
+        }
+        else if (!messageValid) {
+            message.focus();
+        }
+
+        return;
+    }
+
+
+    // ===============================
+    // EVERYTHING IS VALID
+    // ===============================
+
+    console.log("Form is valid.");
+
+    // Submit / API / EmailJS / backend code here
+
+    form.reset();
+
 });
 </script>
 </body>

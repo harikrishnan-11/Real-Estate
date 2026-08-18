@@ -290,29 +290,6 @@ if (pageBtns.length){
   });
 }
 
-// ================= CONTACT FORM (demo validation) =================
-const contactForm = document.getElementById('contactForm');
-if (contactForm){
-  const successBox = document.getElementById('contactSuccess');
-  contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = contactForm.querySelector('button[type="submit"]');
-    const label = btn.querySelector('.btn-label') || btn;
-    const original = label.textContent;
-    btn.disabled = true;
-    label.textContent = 'Sending…';
-
-    setTimeout(() => {
-      btn.disabled = false;
-      label.textContent = original;
-      contactForm.reset();
-      if (successBox){
-        successBox.classList.add('show');
-        setTimeout(() => successBox.classList.remove('show'), 4500);
-      }
-    }, 900);
-  });
-}
 
 // ================= PASSWORD VISIBILITY TOGGLE =================
 document.querySelectorAll('.field-icon-btn[data-toggle]').forEach(btn => {
